@@ -23,6 +23,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/signup', UserController.signUp);
+router.post('/login', UserController.login);
 router.get('/users', UserController.getAllUsers)
 
 export default router;

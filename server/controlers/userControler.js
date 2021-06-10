@@ -32,7 +32,7 @@ const login = async (req, res) => {
       let token = await jwt.sign({
         _id: user._id.toHexString()
       }, 'dntpwnme8').toString()
-      user.sessionToken.push({
+      user.secretKey.push({
         token
     })
       
