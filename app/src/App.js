@@ -8,11 +8,15 @@ import LeadersBoard from './pages/LeadersBoard'
 import Shop from './pages/Shop'
 import UserInventory from './pages/UserInventory'
 import Login from './pages/Login'
+import Signup from './pages/Signup'
+import Header from './components/Header'
+import Footer from './components/Footer'
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <Header></Header>
         <Switch>
           <Route exact path='/'>
             <GameWindow></GameWindow>
@@ -32,7 +36,11 @@ function App() {
           <Route path='/login'>
             <Login></Login>
           </Route>
+          <Route path='/signup'>
+            <Signup></Signup>
+          </Route>
         </Switch>
+        <Footer></Footer>
       </Router>
     </div>
   );
