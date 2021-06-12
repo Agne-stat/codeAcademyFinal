@@ -1,7 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/userModel.js';
-// import defaultImage from '../images/profile.png'
 
 
 const signUp = async (req, res) => {
@@ -44,6 +43,24 @@ const login = async (req, res) => {
     }
 }
 
+const getUserData = (req, res) => {
+  const id=req.params.id;
+  User.findById(id)
+  .then((data) => res.json(data))
+}
+
+const updateUserData = (req, res) => {
+  const id = req.params.id;
+  let goldItme = req.body.gold;
+
+  User.findByIdAndUpdate(id, {
+    gold:goldItme
+  })
+  .then((response) => {
+    res.send()
+  })
+}
+
 const getAllUsers = async (req,res) => {
     try {
         let users = await User.find({})
@@ -56,5 +73,7 @@ const getAllUsers = async (req,res) => {
 export default {
     signUp,
     login,
+    getUserData,
+    updateUserData,
     getAllUsers
 }

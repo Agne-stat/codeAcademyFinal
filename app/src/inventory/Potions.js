@@ -1,0 +1,20 @@
+export const Potions = [
+    {
+        "type":"potion",
+        "heals":20,
+        "price":10,
+        "sellPrice":5,
+    },
+    {
+        "type":"potion",
+        "heals":35,
+        "price":30,
+        "sellPrice":10,
+    },
+    {
+        "type":"potion",
+        "heals":50,
+        "price":60,
+        "sellPrice":20,
+    }
+]

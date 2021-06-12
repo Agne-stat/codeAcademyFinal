@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
+import axios from 'axios';
 
 import GameWindow from './pages/GameWindow'
 import Arena from './pages/Arena'
@@ -12,36 +13,52 @@ import Signup from './pages/Signup'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
+export const DataContext = React.createContext();
+
 function App() {
+  const [userData, setuserData] = useState([])
+
+  useEffect(() => {
+    const id = localStorage.getItem('gameUser-id')
+    console.log(id)
+    axios.get('http://localhost:5000/user/'+ id)
+    .then((res) => {
+      setuserData(res.data)
+      console.log(res.data)
+    })
+  }, [])
+  
   return (
     <div className="App">
-      <Router>
-        <Header></Header>
-        <Switch>
-          <Route exact path='/'>
-            <GameWindow></GameWindow>
-          </Route>
-          <Route path='/arena'>
-            <Arena></Arena>
-          </Route>
-          <Route path='/leadersboard'>
-            <LeadersBoard></LeadersBoard>
-          </Route>
-          <Route path='/shop'>
-            <Shop></Shop>
-          </Route>
-          <Route path='/inventory'>
-            <UserInventory></UserInventory>
-          </Route>
-          <Route path='/login'>
-            <Login></Login>
-          </Route>
-          <Route path='/signup'>
-            <Signup></Signup>
-          </Route>
-        </Switch>
-        <Footer></Footer>
-      </Router>
+      <DataContext.Provider value={{userData}}>
+        <Router>
+          <Header></Header>
+          <Switch>
+            <Route exact path='/'>
+              <GameWindow></GameWindow>
+            </Route>
+            <Route path='/arena'>
+              <Arena></Arena>
+            </Route>
+            <Route path='/leadersboard'>
+              <LeadersBoard></LeadersBoard>
+            </Route>
+            <Route path='/shop'>
+              <Shop></Shop>
+            </Route>
+            <Route path='/inventory'>
+              <UserInventory></UserInventory>
+            </Route>
+            <Route path='/login'>
+              <Login></Login>
+            </Route>
+            <Route path='/signup'>
+              <Signup></Signup>
+            </Route>
+          </Switch>
+          <Footer></Footer>
+        </Router>
+      </DataContext.Provider>
     </div>
   );
 }

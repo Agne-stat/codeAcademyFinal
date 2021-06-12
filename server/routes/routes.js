@@ -1,5 +1,6 @@
 import express from 'express';
 import UserController from '../controlers/userControler.js';
+import UserInventoryController from '../controlers/userInventoryControler.js';
 import UserMiddleware from '../models/authenticate.js';
 import multer from 'multer';
 
@@ -24,6 +25,11 @@ router.get('/', (req, res) => {
 
 router.post('/signup', UserController.signUp);
 router.post('/login', UserController.login);
-router.get('/users', UserController.getAllUsers)
+router.get('/user/:id', UserController.getUserData);
+router.put('/updateUserData/:id', UserController.updateUserData);
+router.get('/users', UserController.getAllUsers);
+router.put('/addWeapon/:id', UserInventoryController.addWeapon)
+router.put('/addArmor/:id', UserInventoryController.addArmor)
+router.put('/addPotion/:id', UserInventoryController.addPotion)
 
 export default router;

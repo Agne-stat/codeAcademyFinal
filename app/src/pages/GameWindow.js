@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
+import { DataContext } from '../App';
+import axios from 'axios';
 
 export default function GameWindow() {
+     const { userData } = useContext(DataContext)
+
+     useEffect(() => {
+          console.log(userData)
+     }, [])
+
     return (
         <div>
            <h1>Game Window</h1>
@@ -18,6 +26,11 @@ export default function GameWindow() {
                <div>
                     <Link to='/inventory'>INVENTORY</Link>
                </div>
+           </div>
+
+           <div>
+                <div>{userData.gold}</div>
+                <div>{userData.health}</div>
            </div>
         </div>
     )
