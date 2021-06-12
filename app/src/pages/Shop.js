@@ -22,7 +22,6 @@ export default function Shop() {
     const addWeapon = (index) => {
         let weapon = weapons[index]
 
-        
             axios.put('http://localhost:5000/addWeapon/'+id, {weapon})
             .then((res) => {
                 console.log(res)
@@ -38,50 +37,6 @@ export default function Shop() {
             })
 
             setuserGold(gold)
-
-        
-    }
-
-    const addArmor = (index) => {
-        let armor = armors[index]
-
-        
-            axios.put('http://localhost:5000/addArmor/'+id, {armor})
-            .then((res) => {
-                console.log(res)
-            })
-
-            let gold = userData.gold - armor.price
-
-            axios.put('http://localhost:5000/updateUserData/'+id, {gold})
-            .then((res) => {
-                console.log(res)
-            })
-
-            setuserGold(gold)
-
-        
-    }
-
-    const addPotion = (index) => {
-        let potion = potions[index]
-
-       
-            axios.put('http://localhost:5000/addArmor/'+id, {potion})
-            .then((res) => {
-                console.log(res)
-            })
-
-            let gold = userData.gold - potion.price
-
-            axios.put('http://localhost:5000/updateUserData/'+id, {gold})
-            .then((res) => {
-                console.log(res)
-            })
-
-            setuserGold(gold)
-
-        
     }
     // const addWeapon = (index) => {
     //     let weapon = weapons[index]
@@ -108,51 +63,51 @@ export default function Shop() {
     //     }
     // }
 
-    // const addArmor = (index) => {
-    //     let armor = armors[index]
+    const addArmor = (index) => {
+        let armor = armors[index]
 
-    //     if(userData.gold >= armor.price) {
-    //         axios.put('http://localhost:5000/addArmor/'+id, {armor})
-    //         .then((res) => {
-    //             console.log(res)
-    //         })
+        if(userData.gold >= armor.price) {
+            axios.put('http://localhost:5000/addArmor/'+id, {armor})
+            .then((res) => {
+                console.log(res)
+            })
 
-    //         let gold = userData.gold - armor.price
+            let gold = userData.gold - armor.price
 
-    //         axios.put('http://localhost:5000/updateUserData/'+id, {gold})
-    //         .then((res) => {
-    //             console.log(res)
-    //         })
+            axios.put('http://localhost:5000/updateUserData/'+id, {gold})
+            .then((res) => {
+                console.log(res)
+            })
 
-    //         setuserGold(gold)
+            setuserGold(gold)
 
-    //     } else {
-    //         console.log('Not enought gold')
-    //     }
-    // }
+        } else {
+            console.log('Not enought gold')
+        }
+    }
 
-    // const addPotion = (index) => {
-    //     let potion = potions[index]
+    const addPotion = (index) => {
+        let potion = potions[index]
 
-    //     if(userData.gold >= potion.price) {
-    //         axios.put('http://localhost:5000/addArmor/'+id, {potion})
-    //         .then((res) => {
-    //             console.log(res)
-    //         })
+        if(userData.gold >= potion.price) {
+            axios.put('http://localhost:5000/addPotion/'+id, {potion})
+            .then((res) => {
+                console.log(res)
+            })
 
-    //         let gold = userData.gold - potion.price
+            let gold = userData.gold - potion.price
 
-    //         axios.put('http://localhost:5000/updateUserData/'+id, {gold})
-    //         .then((res) => {
-    //             console.log(res)
-    //         })
+            axios.put('http://localhost:5000/updateUserData/'+id, {gold})
+            .then((res) => {
+                console.log(res)
+            })
 
-    //         setuserGold(gold)
+            setuserGold(gold)
 
-    //     } else {
-    //         console.log('Not enought gold')
-    //     }
-    // }
+        } else {
+            console.log('Not enought gold')
+        }
+    }
 
 
     return (

@@ -6,7 +6,7 @@ const addWeapon = async (req, res) => {
     
 
     User.findByIdAndUpdate(id, {
-        inventory: inventory.weapon
+        inventoryWeapons: inventory.weapon
     })
     .then((response) => {
         res.send()
@@ -19,7 +19,7 @@ const addArmor = async (req, res) => {
 
 
     User.findByIdAndUpdate(id, {
-        inventory: inventory.armor
+        inventoryArmors: inventory.armor
     })
     .then((response) => {
         res.send()
@@ -31,7 +31,7 @@ const addPotion = async (req, res) => {
     const inventory = req.body;
 
     User.findByIdAndUpdate(id, {
-        inventory:inventory.potion
+        inventoryPotions:inventory.potion
     })
     .then((response) => {
         res.send()

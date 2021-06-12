@@ -32,9 +32,16 @@ let UserSchema = new mongoose.Schema({
         default: 100
     },
 
-    inventory: {
-        type: Array,
-        default: []
+    inventoryWeapons: {
+        type: [],
+    },
+
+    inventoryArmors: {
+        type: []
+    },
+    
+    inventoryPotions: {
+        type: []
     },
 
     secretKey: [{
