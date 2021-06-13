@@ -38,30 +38,6 @@ export default function Shop() {
 
             setuserGold(gold)
     }
-    // const addWeapon = (index) => {
-    //     let weapon = weapons[index]
-
-    //     if(userData.gold >= weapon.price) {
-    //         axios.put('http://localhost:5000/addWeapon/'+id, {weapon})
-    //         .then((res) => {
-    //             console.log(res)
-    //         })
-
-    //         let gold = userData.gold - weapon.price
-            
-    //         console.log(gold)
-
-    //         axios.put('http://localhost:5000/updateUserData/'+id, {gold})
-    //         .then((res) => {
-    //             console.log(res)
-    //         })
-
-    //         setuserGold(gold)
-
-    //     } else {
-    //         console.log('Not enought gold')
-    //     }
-    // }
 
     const addArmor = (index) => {
         let armor = armors[index]

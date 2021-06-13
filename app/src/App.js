@@ -30,7 +30,7 @@ function App() {
   
   return (
     <div className="App">
-      <DataContext.Provider value={{userData}}>
+      <DataContext.Provider value={{userData, setuserData }}>
         <Router>
           <Header></Header>
           <Switch>
