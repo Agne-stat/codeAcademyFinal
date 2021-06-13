@@ -12,6 +12,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import SingleUser from './pages/SingleUser';
 
 export const DataContext = React.createContext();
 
@@ -54,6 +55,9 @@ function App() {
             </Route>
             <Route path='/signup'>
               <Signup></Signup>
+            </Route>
+            <Route path='/user/:id'>
+              <SingleUser></SingleUser>
             </Route>
           </Switch>
           <Footer></Footer>

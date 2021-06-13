@@ -49,7 +49,7 @@ export default function Arena() {
         }
 
         if(changeMonster === true) {
-            let monsterIndex = Math.floor(Math.random() * enemies.length+1)
+            let monsterIndex = Math.floor(Math.random() * enemies.length)
             console.log(enemies,monsterIndex)
             setMonster(enemies[monsterIndex])
             setMonsterHealth(100)
