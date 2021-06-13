@@ -1,7 +1,6 @@
 import express from 'express';
 import UserController from '../controlers/userControler.js';
 import UserInventoryController from '../controlers/userInventoryControler.js';
-import MonsterControler from '../controlers/monsterControler.js';
 import UserMiddleware from '../models/authenticate.js';
 import multer from 'multer';
 
@@ -37,8 +36,5 @@ router.put('/addPotion/:id', UserInventoryController.addPotion)
 router.put('/sellWeapon/:id', UserInventoryController.sellWeapon)
 router.put('/sellArmor/:id', UserInventoryController.sellArmor)
 router.put('/sellPotion/:id', UserInventoryController.sellPotion)
-router.post('/addMonsterData', MonsterControler.addMonsterData);
-router.get('/getMonsterData/:id', MonsterControler.getMonsterData)
-router.put('/updateMonstersHealth/:id', MonsterControler.updateMonstersHealth);
 
 export default router;

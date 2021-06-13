@@ -15,17 +15,20 @@ export default function Arena() {
     const [monster, setMonster] = useState([])
     const [monsterHealth, setMonsterHealth] = useState(100)
     const [monsterDamage, setMonsterDamage] = useState(0)
+    const [changeMonster, setChangeMonster] = useState(true)
 
     let enemies = Enemies;
 
     const id = localStorage.getItem('gameUser-id');
-    // const localMonsterHealth  = localStorage.getItem('gameMonster-health')
 
     useEffect(() => {
         
-        // setMonsterHealth(localMonsterHealth)
         setUserGold(userData.gold)
         setUserHealth(userData.health)
+
+
+        console.log(monsterHealth,changeMonster)
+        setChangeMonster(false)
 
         if(userData.inventoryWeapons.length === 0) {
             setUserDamage(3)
@@ -45,21 +48,24 @@ export default function Arena() {
             setUserHealing(userData.inventoryPotions[0].heals)
         }
 
-        let monsterIndex = Math.floor(Math.random() * enemies.length+1)
+        if(changeMonster === true) {
+            let monsterIndex = Math.floor(Math.random() * enemies.length+1)
+            console.log(enemies,monsterIndex)
+            setMonster(enemies[monsterIndex])
+            setMonsterHealth(100)
+            setMonsterDamage(enemies[monsterIndex].damage)
+            setChangeMonster(false)
+        }
 
-        setMonster(enemies[monsterIndex])
-        setMonsterDamage(enemies[monsterIndex].damage)
-
-        
-        // if(localMonsterHealth <= 0) {
-        //     let monsterIndex = Math.floor(Math.random() * enemies.length+1)
-        //     setMonster(enemies[monsterIndex])
-        // }
-        
-    }, [userData])
+    }, [userData, changeMonster])
 
     const startFight = () => {
         console.log(monster)
+
+        if(monsterHealth < 1) {
+            console.log('new monster')
+            setChangeMonster(true)
+        }
 
         let userDamageLevel = Math.floor(Math.random() * userDamage+1)
         let monsterDamageLevel = Math.floor(Math.random() * monsterDamage+1)
@@ -75,6 +81,7 @@ export default function Arena() {
                 console.log(possibility)
                 if(possibility === 4) {
                     monsterDamageLevel = 0
+                    armor = 0
                 } else {
                     monsterDamageLevel = Math.floor(Math.random() * monsterDamage+1)
                 }
@@ -119,7 +126,6 @@ export default function Arena() {
         let healthMonster = monsterHealth - userDamageLevel;
 
         setMonsterHealth(healthMonster)
-        // localStorage.setItem('gameMonster-health',healthMonster)
 
         console.log(userDamageLevel,monsterDamageLevel)
 
