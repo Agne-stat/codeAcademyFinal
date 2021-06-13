@@ -61,6 +61,18 @@ const updateUserData = (req, res) => {
   })
 }
 
+const updateUserHealth = (req, res) => {
+  const id = req.params.id;
+  let helthItem = req.body.health;
+
+  User.findByIdAndUpdate(id, {
+    health:helthItem
+  })
+  .then((response) => {
+    res.send()
+  })
+}
+
 
 const getAllUsers = async (req,res) => {
     try {
@@ -76,5 +88,6 @@ export default {
     login,
     getUserData,
     updateUserData,
+    updateUserHealth,
     getAllUsers
 }
