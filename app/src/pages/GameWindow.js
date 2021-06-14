@@ -7,18 +7,31 @@ export default function GameWindow() {
      const { userData } = useContext(DataContext)
 
      const [userGold, setuserGold] = useState(0)
+     const [userHealth, setUserHealth] = useState(0)
 
      useEffect(() => {
-          console.log(userData)
+          const id = localStorage.getItem('gameUser-id')
 
-          setuserGold(userData.gold)
+          axios.get('http://localhost:5000/user/'+ id)
+               .then((res) => {
+                    setuserGold(res.data.gold)
+                    setUserHealth(res.data.health)
+                    console.log(res.data)
+          })
 
      }, [userData])
 
     return (
         <div>
-           <h1>Game Window</h1>
-           <div>
+          <div className="user-profile">
+               <h1>Hello, {userData.username}</h1>
+               <div>
+                    <img src={userData.image} alt="profile pic"></img>
+               </div>
+               
+          </div>
+           
+          <div>
                <div>
                     <Link to='/arena'>ARENA</Link>
                </div>
@@ -35,7 +48,7 @@ export default function GameWindow() {
 
            <div>
                 <div>{userGold}</div>
-                <div>{userData.health}</div>
+                <div>{userHealth}</div>
            </div>
         </div>
     )

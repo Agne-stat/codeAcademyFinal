@@ -4,7 +4,7 @@ import { DataContext } from '../App';
 import axios from 'axios';
 
 export default function Arena() {
-    const { userData } = useContext(DataContext)
+    const { userData, setuserData } = useContext(DataContext)
 
     const [userGold, setUserGold] = useState(0)
     const [userHealth, setUserHealth] = useState(0)
@@ -22,11 +22,17 @@ export default function Arena() {
     const id = localStorage.getItem('gameUser-id');
 
     useEffect(() => {
+
+        const id = localStorage.getItem('gameUser-id')
+
+          axios.get('http://localhost:5000/user/'+ id)
+               .then((res) => {
+                setuserData(res.data)
+                setUserGold(res.data.gold)
+                setUserHealth(res.data.health)
+          })
+
         
-        setUserGold(userData.gold)
-        setUserHealth(userData.health)
-
-
         console.log(monsterHealth,changeMonster)
         setChangeMonster(false)
 

@@ -4,6 +4,7 @@ import { Armors } from '../inventory/Armors'
 import { Potions } from '../inventory/Potions'
 import axios from 'axios'
 import { DataContext } from '../App';
+import './Shop.css'
 
 export default function Shop() {
     const { userData } = useContext(DataContext)
@@ -95,21 +96,21 @@ export default function Shop() {
            <div>
                <div>
                    <h3>Weapons</h3>
-                   <div onClick={()=>addWeapon(0)}>Sword <span>{weapons[0].price}</span></div>
-                   <div onClick={()=>addWeapon(1)}>Bow <span>{weapons[1].price}</span></div>
-                   <div onClick={()=>addWeapon(2)}>Magic Wand <span>{weapons[2].price}</span></div>
+                   <button disabled={userGold<weapons[0].price} onClick={()=>addWeapon(0)}>Sword <span>{weapons[0].price}</span></button>
+                   <button disabled={userGold<weapons[1].price} onClick={()=>addWeapon(1)}>Bow <span>{weapons[1].price}</span></button>
+                   <button disabled={userGold<weapons[2].price} onClick={()=>addWeapon(2)}>Magic Wand <span>{weapons[2].price}</span></button>
                </div>
                <div>
                    <h3>Armors</h3>
-                   <div onClick={()=>addArmor(0)}>Light <span>{armors[0].price}</span></div>
-                   <div onClick={()=>addArmor(1)}>Medium <span>{armors[1].price}</span></div>
-                   <div onClick={()=>addArmor(2)}>Strong <span>{armors[2].price}</span></div>
+                   <button disabled={userGold<armors[0].price} onClick={()=>addArmor(0)}>Light <span>{armors[0].price}</span></button>
+                   <button disabled={userGold<armors[1].price} onClick={()=>addArmor(1)}>Medium <span>{armors[1].price}</span></button>
+                   <button disabled={userGold<armors[2].price} onClick={()=>addArmor(2)}>Strong <span>{armors[2].price}</span></button>
                </div>
                <div>
                    <h3>Potions</h3>
-                   <div onClick={()=>addPotion(0)}>1 <span>{potions[0].price}</span></div>
-                   <div onClick={()=>addPotion(1)}>2 <span>{potions[1].price}</span></div>
-                   <div onClick={()=>addPotion(2)}>3 <span>{potions[2].price}</span></div>
+                   <button disabled={userGold<potions[0].price} onClick={()=>addPotion(0)}>1 <span>{potions[0].price}</span></button>
+                   <button disabled={userGold<potions[1].price} onClick={()=>addPotion(1)}>2 <span>{potions[1].price}</span></button>
+                   <button disabled={userGold<potions[2].price} onClick={()=>addPotion(2)}>3 <span>{potions[2].price}</span></button>
                </div>
            </div>
         </div>

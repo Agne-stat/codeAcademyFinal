@@ -8,7 +8,7 @@ const authenticate = async (req, res, next) => {
     let decoded = await jwt.verify(token, 'dntpwnme8') 
     let user = await User.findOne({
       _id: decoded._id,
-      "sessionToken.token": token
+      "secretKey.token": token
     })
     if (!user) throw 'Authentication failed'
     req.user = user
@@ -18,8 +18,6 @@ const authenticate = async (req, res, next) => {
     e = e.message == "jwt malformed" ? 'Wrong session token' : e
     res.status(401).json(e)
   }
-
-
 }
 
 export default authenticate;

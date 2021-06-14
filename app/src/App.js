@@ -27,6 +27,8 @@ function App() {
       setuserData(res.data)
       console.log(res.data)
     })
+    setuserData(userData)
+
   }, [])
   
   return (

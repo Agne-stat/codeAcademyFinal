@@ -43,6 +43,7 @@ const login = async (req, res) => {
     }
 }
 
+
 const getUserData = (req, res) => {
   const id=req.params.id;
   User.findById(id)
