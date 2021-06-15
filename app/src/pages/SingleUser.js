@@ -4,10 +4,10 @@ import axios from 'axios'
 
 export default function SingleUser() {
     const [singleUser, setSingleUser] = useState([])
-    const [userWeapon, setUserWeapon] = useState(false)
-    const [userArmor, setUserArmor] = useState(false)
-    const [userPotion, setUserPotion] = useState(false)
-    const [noInventory, setNoInventory] = useState(false)
+    const [userWeapon, setUserWeapon] = useState(null)
+    const [userArmor, setUserArmor] = useState(null)
+    const [userPotion, setUserPotion] = useState(null)
+    const [noInventory, setNoInventory] = useState(null)
 
     const { id } = useParams()
 
@@ -29,20 +29,28 @@ export default function SingleUser() {
         if(singleUser.inventoryWeapons.length !== 0) {
             setUserWeapon(true)
             console.log(userWeapon)
-        } 
+        } else {
+            setUserWeapon(false)
+        }
 
         if(singleUser.inventoryArmors.length !== 0) {
             setUserArmor(true)
-        } 
+        } else {
+            setUserArmor(false)
+        }
 
         if(singleUser.inventoryPotions.length !== 0) {
             setUserPotion(true) 
-        } 
+        } else {
+            setUserPotion(false)
+        }
 
-        // if(userWeapon === false && userArmor === false ) {
-        //     setNoInventory(true)
-        //     console.log(userWeapon)
-        // }
+        if(userWeapon === false && userArmor ===false && userPotion ===false) {
+            setNoInventory(true)
+            console.log(userWeapon)
+        } else {
+            setNoInventory(false)
+        }
     }
 
     return (
@@ -54,7 +62,7 @@ export default function SingleUser() {
                 {userWeapon && <p>{singleUser.inventoryWeapons[0].name}</p>}
                 {userArmor && <p>{singleUser.inventoryArmors[0].defence}</p>}
                 {userPotion && <p>{singleUser.inventoryPotions[0].heals}</p>}
-                {noInventory && <p>User has no inventory</p>}
+                {noInventory && <p>No inventory</p>}
             </div>
         </div>
     )

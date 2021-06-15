@@ -97,20 +97,29 @@ export default function Shop() {
                <div>
                    <h3>Weapons</h3>
                    <button disabled={userGold<weapons[0].price} onClick={()=>addWeapon(0)}>Sword <span>{weapons[0].price}</span></button>
+                   <img src={weapons[0].image} alt="sword"></img>
                    <button disabled={userGold<weapons[1].price} onClick={()=>addWeapon(1)}>Bow <span>{weapons[1].price}</span></button>
+                   <img src={weapons[1].image} alt="bow"></img>
                    <button disabled={userGold<weapons[2].price} onClick={()=>addWeapon(2)}>Magic Wand <span>{weapons[2].price}</span></button>
+                   <img src={weapons[2].image} alt="magic"></img>
                </div>
                <div>
                    <h3>Armors</h3>
                    <button disabled={userGold<armors[0].price} onClick={()=>addArmor(0)}>Light <span>{armors[0].price}</span></button>
+                   <img src={armors[0].image} alt="light"></img>
                    <button disabled={userGold<armors[1].price} onClick={()=>addArmor(1)}>Medium <span>{armors[1].price}</span></button>
+                   <img src={armors[1].image} alt="medium"></img>
                    <button disabled={userGold<armors[2].price} onClick={()=>addArmor(2)}>Strong <span>{armors[2].price}</span></button>
+                   <img src={armors[2].image} alt="heavy"></img>
                </div>
                <div>
                    <h3>Potions</h3>
                    <button disabled={userGold<potions[0].price} onClick={()=>addPotion(0)}>1 <span>{potions[0].price}</span></button>
+                   <img src={potions[0].image} alt="potion1"></img>
                    <button disabled={userGold<potions[1].price} onClick={()=>addPotion(1)}>2 <span>{potions[1].price}</span></button>
+                   <img src={potions[1].image} alt="potion2"></img>
                    <button disabled={userGold<potions[2].price} onClick={()=>addPotion(2)}>3 <span>{potions[2].price}</span></button>
+                   <img src={potions[2].image} alt="potion3"></img>
                </div>
            </div>
         </div>

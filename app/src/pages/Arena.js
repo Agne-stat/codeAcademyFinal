@@ -174,7 +174,7 @@ export default function Arena() {
                         <div>{userDefence}</div>
                         <div>{userHealing}</div>
                     </div>
-                    <button onClick={takePotion}>Drink potion</button>
+                    <button disabled={userHealing === 0}  onClick={takePotion}>Drink potion</button>
                 </div>
 
                 <div className="arena-controler">
