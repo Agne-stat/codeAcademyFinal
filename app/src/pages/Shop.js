@@ -4,6 +4,7 @@ import { Armors } from '../inventory/Armors'
 import { Potions } from '../inventory/Potions'
 import axios from 'axios'
 import { DataContext } from '../App';
+import UserProfile from '../components/UserProfile'
 import './Shop.css'
 
 export default function Shop() {
@@ -89,40 +90,54 @@ export default function Shop() {
 
     return (
         <div>
+            <UserProfile user={userData} gold={userGold} health={userData.health}></UserProfile>
            <h1>Shop</h1>
-           <div>
-               <h3>You have {userGold}</h3>
-           </div>
            <div>
                <div>
                    <h3>Weapons</h3>
-                   {weapons.map(weapon => (
                        <div>
-                            <button disabled={userGold<weapon.price} onClick={()=>addWeapon(weapon.index)}>{weapon.price}</button>
-                            <img src={weapon.image} alt="weapon"></img>
+                            <button disabled={userGold<weapons[0].price} onClick={()=>addWeapon(0)}>{weapons[0].price}</button>
+                            <img src={weapons[0].image} alt="weapon"></img>
                        </div>
-                       
-                   ))}
+                       <div>
+                            <button disabled={userGold<weapons[1].price} onClick={()=>addWeapon(1)}>{weapons[1].price}</button>
+                            <img src={weapons[1].image} alt="weapon"></img>
+                       </div>
+                       <div>
+                            <button disabled={userGold<weapons[2].price} onClick={()=>addWeapon(2)}>{weapons[2].price}</button>
+                            <img src={weapons[2].image} alt="weapon"></img>
+                       </div>
+                   
                </div>
                <div>
                    <h3>Armors</h3>
-                   {armors.map(armor => (
                        <div>
-                            <button disabled={userGold<armor.price} onClick={()=>addArmor(armor.index)}>{armor.price}</button>
-                            <img src={armor.image} alt="armor"></img>
+                            <button disabled={userGold<armors[0].price} onClick={()=>addArmor(0)}>{armors[0].price}</button>
+                            <img src={armors[0].image} alt="armor"></img>
                        </div>
-                       
-                   ))}
+                       <div>
+                            <button disabled={userGold<armors[1].price} onClick={()=>addArmor(1)}>{armors[1].price}</button>
+                            <img src={armors[1].image} alt="armor"></img>
+                       </div>
+                       <div>
+                            <button disabled={userGold<armors[2].price} onClick={()=>addArmor(2)}>{armors[2].price}</button>
+                            <img src={armors[2].image} alt="armor"></img>
+                       </div>
                </div>
                <div>
                    <h3>Potions</h3>
-                   {potions.map(potion => (
                        <div>
-                            <button disabled={userGold<potion.price} onClick={()=>addPotion(potion.index)}>{potion.price}</button>
-                            <img src={potion.image} alt="potion"></img>
+                            <button disabled={userGold<potions[0].price} onClick={()=>addPotion(0)}>{potions[0].price}</button>
+                            <img src={potions[0].image} alt="potion"></img>
                        </div>
-                    ))}
-                   
+                       <div>
+                            <button disabled={userGold<potions[1].price} onClick={()=>addPotion(1)}>{potions[1].price}</button>
+                            <img src={potions[1].image} alt="potion"></img>
+                       </div>
+                       <div>
+                            <button disabled={userGold<potions[2].price} onClick={()=>addPotion(2)}>{potions[2].price}</button>
+                            <img src={potions[2].image} alt="potion"></img>
+                       </div>
                </div>
            </div>
         </div>

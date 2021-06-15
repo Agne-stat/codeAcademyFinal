@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom';
+import logo from '../images/logo.png'
+import './Header.css'
 
 export default function Header() {
     const [redirect, setRedirect] = useState(null);
@@ -15,12 +17,12 @@ export default function Header() {
     return (
         <header>
            <nav>
-               <ul>
-                   <li>
-                       <Link to='/'>LOGO</Link>
-                    </li>
-               </ul>
-               <button onClick={logout}>Loguot</button>
+               <div className="logo">
+                    <Link to='/'>
+                        <img src={logo} alt="logo"></img>
+                    </Link>
+               </div>
+               <button className="logout" onClick={logout}>LOGOUT</button>
             </nav> 
         </header>
     )

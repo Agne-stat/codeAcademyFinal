@@ -33,13 +33,13 @@ export default function Arena() {
           })
 
         
-        console.log(monsterHealth,changeMonster)
         setChangeMonster(false)
 
         if(userData.inventoryWeapons.length === 0) {
             setUserDamage(3)
         } else {
             setUserDamage(userData.inventoryWeapons[0].damage)
+
         }
 
         if(userData.inventoryArmors.length === 0) {

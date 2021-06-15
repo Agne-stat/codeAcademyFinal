@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { DataContext } from '../App';
+import UserProfile from '../components/UserProfile';
 import axios from 'axios';
+import './styles/Inventory.css'
 
 export default function UserInventory() {
     const { userData, setuserData } = useContext(DataContext)
@@ -32,6 +34,7 @@ export default function UserInventory() {
                 setuserGold(res.data.gold)
         })
 
+
         if(userData.inventoryWeapons.length === 0) {
             setuserWeapon([])
             setDisplayWeapon(false)
@@ -51,21 +54,22 @@ export default function UserInventory() {
             setArmorImg(userData.inventoryArmors[0].image)
             setArmorPrice(userData.inventoryArmors[0].sellPrice)
             setDisplayArmor(true)
-            console.log(displayArmor)
+
         }
 
         if(userData.inventoryPotions.length === 0) {
             setuserPotion([])
             setDisplayPotion(false)
-            console.log(displayPotion)
         } else {
             setuserPotion(userData.inventoryPotions[0].heals)
             setDisplayPotion(true)
             setPotionImg(userData.inventoryPotions[0].image)
             setPotionPrice(userData.inventoryPotions[0].sellPrice)
-            console.log(displayPotion)
         }
         
+        // return () => {
+        //     setuserData({}); 
+        // }; 
         
     }, [userData, setuserData, setuserGold, setuserArmor, setuserPotion, setuserWeapon, setDisplayArmor, setDisplayPotion ])
     // displayPotion, displayArmor, displayWeapon
@@ -114,45 +118,50 @@ export default function UserInventory() {
     }
 
     return (
-        <div>
-            <h1>Your Inventory</h1>
-            <h3>Your gold: {userGold}</h3>
-            <div>
-                <div>
-                    <h3>Weapon:</h3>
-                    {displayWeapon ? 
+        <main className="inventory">
+            <div className="inventory-container">
+                <UserProfile user={userData} gold={userGold} health={userData.health}></UserProfile>
+                <div className="inventory-items">
+                    <h1>Your Inventory</h1>
+                    <div className="inventory-items">
                         <div>
-                            <p>Damage: {userWeapon}</p>
-                            <p>Special: {weaponSpecial}</p>
-                            <img src={weaponImg} alt="weapon"></img>
-                            <button onClick={sellWeapon}>Sell {weaponPrice} for </button>
-                        </div> : 
-                        <p>You don't have weapon</p>
-                    }
-                </div>
-                <div>
-                    <h3>Armor:</h3>
-                    {displayArmor ? 
+                            <h3>Weapon:</h3>
+                            {displayWeapon ? 
+                                <div>
+                                    <p>Damage: {userWeapon}</p>
+                                    <p>Special: {weaponSpecial}</p>
+                                    <img src={weaponImg} alt="weapon"></img>
+                                    <button onClick={sellWeapon}>Sell for {weaponPrice}</button>
+                                </div> : 
+                                <p>You don't have weapon</p>
+                            }
+                        </div>
                         <div>
-                            <p>Defence: {userArmor}</p>
-                            <img src={armorImg} alt="armor"></img>
-                            <button onClick={sellArmor}>Sell {armorPrice} for </button>
-                        </div> : 
-                        <p>You don't have armor</p>
-                    }
-                </div>
-                <div>
-                    <h3>Potion:</h3>
-                    {displayPotion ? 
+                            <h3>Armor:</h3>
+                            {displayArmor ? 
+                                <div>
+                                    <p>Defence: {userArmor}</p>
+                                    <img src={armorImg} alt="armor"></img>
+                                    <button onClick={sellArmor}>Sell for {armorPrice}</button>
+                                </div> : 
+                                <p>You don't have armor</p>
+                            }
+                        </div>
                         <div>
-                            <p>Heals: {userPotion}</p>
-                            <img src={potionImg} alt="potion"></img>
-                            <button onClick={sellPotion}>Sell {potionPrice} for </button>
-                        </div> : 
-                        <p>You don't have potion</p>
-                    }
+                            <h3>Potion:</h3>
+                            {displayPotion ? 
+                                <div>
+                                    <p>Heals: {userPotion}</p>
+                                    <img src={potionImg} alt="potion"></img>
+                                    <button onClick={sellPotion}>Sell for {potionPrice}</button>
+                                </div> : 
+                                <p>You don't have potion</p>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+            
+        </main>
     )
 }

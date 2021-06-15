@@ -20,7 +20,7 @@ const login = async (req, res) => {
     })
     if(user){
         if(!user.image) {
-          user.image = `http://localhost:5000/images/profile.png`;
+          user.image = `http://localhost:5000/images/avatar.png`;
         }
         let response = await bcrypt.compare(req.body.password, user.password)
 

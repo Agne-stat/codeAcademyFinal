@@ -1,0 +1,41 @@
+.inventory {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: block;
+  position: relative;
+}
+
+.inventory::after {
+  content: "";
+  background: url("../../images/back4.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.inventory-container {
+  margin: 0 auto;
+  padding: 20px 0;
+  width: 800px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inventory-items {
+  margin: auto 0;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

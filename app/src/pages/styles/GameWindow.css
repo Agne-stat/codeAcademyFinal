@@ -1,0 +1,113 @@
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: block;
+  position: relative;
+}
+
+.home::after {
+  content: "";
+  background: url("../../images/back4.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.home-container {
+  margin: 0 auto;
+  padding: 20px 0;
+  width: 800px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* user profile */
+.user-profile {
+  width: 30%;
+  height: 100%;
+  border-right: 2px solid #3d1c7977;
+}
+
+h2 {
+  padding: 20px 0;
+}
+
+.image-container {
+  width: 100%;
+  height: 200px;
+}
+
+.image-container img {
+  margin: 0 auto;
+  width: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-info {
+  padding: 50px 0;
+  width: 100%;
+  height: 200px;
+}
+
+.user-info div {
+  padding: 20px 0;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.user-info div span {
+  color: #fff;
+  font-size: 1.2em;
+}
+
+/* game navigation */
+.game-navigation {
+  margin: auto 0;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-container {
+  padding: 0 0 0 30px;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.game-item {
+  width: 48%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3d1c7998;
+}
+
+.game-item:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.game-item a {
+  color: #fff;
+  font-size: 1.3em;
+}
