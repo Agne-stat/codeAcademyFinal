@@ -9,31 +9,66 @@ export default function UserInventory() {
     const [userWeapon, setuserWeapon] = useState([])
     const [userArmor, setuserArmor] = useState([])
     const [userPotion, setuserPotion] = useState([])
+    const [displayWeapon, setDisplayWeapon] = useState(null)
+    const [displayArmor, setDisplayArmor] = useState(null)
+    const [displayPotion, setDisplayPotion] = useState(null)
+    const [weaponImg, setWeaponImg] = useState('')
+    const [armorImg, setArmorImg] = useState('')
+    const [potionImg, setPotionImg] = useState('')
+    const [weaponPrice, setWeaponPrice] = useState(0)
+    const [armorPrice, setArmorPrice] = useState(0)
+    const [potionPrice, setPotionPrice] = useState(0)
+    const [weaponSpecial, setWeaponSpecial] = useState('')
+
 
     const id = localStorage.getItem('gameUser-id');
 
     useEffect(() => {
+        const id = localStorage.getItem('gameUser-id')
+
+        axios.get('http://localhost:5000/user/'+ id)
+            .then((res) => {
+                setuserData(res.data)
+                setuserGold(res.data.gold)
+        })
 
         if(userData.inventoryWeapons.length === 0) {
             setuserWeapon([])
+            setDisplayWeapon(false)
         } else {
-            setuserWeapon(userData.inventoryWeapons[0].name)
+            setuserWeapon(userData.inventoryWeapons[0].damage)
+            setWeaponImg(userData.inventoryWeapons[0].image)
+            setWeaponPrice(userData.inventoryWeapons[0].sellPrice)
+            setWeaponSpecial(userData.inventoryWeapons[0].special)
+            setDisplayWeapon(true)
         }
         
         if(userData.inventoryArmors.length === 0) {
             setuserArmor([])
+            setDisplayArmor(false)
         } else {
             setuserArmor(userData.inventoryArmors[0].defence)
+            setArmorImg(userData.inventoryArmors[0].image)
+            setArmorPrice(userData.inventoryArmors[0].sellPrice)
+            setDisplayArmor(true)
+            console.log(displayArmor)
         }
 
         if(userData.inventoryPotions.length === 0) {
             setuserPotion([])
+            setDisplayPotion(false)
+            console.log(displayPotion)
         } else {
             setuserPotion(userData.inventoryPotions[0].heals)
+            setDisplayPotion(true)
+            setPotionImg(userData.inventoryPotions[0].image)
+            setPotionPrice(userData.inventoryPotions[0].sellPrice)
+            console.log(displayPotion)
         }
         
-        setuserGold(userData.gold)
-    }, [userData])
+        
+    }, [userData, setuserData, setuserGold, setuserArmor, setuserPotion, setuserWeapon, setDisplayArmor, setDisplayPotion ])
+    // displayPotion, displayArmor, displayWeapon
 
     const sellWeapon = () => {
         let gold = userData.gold + userData.inventoryWeapons[0].sellPrice
@@ -46,6 +81,7 @@ export default function UserInventory() {
         
         setuserGold(gold)
         setuserWeapon(weapon)
+        setDisplayWeapon(false)
     }
 
     const sellArmor = () => {
@@ -59,6 +95,7 @@ export default function UserInventory() {
         
         setuserGold(gold)
         setuserArmor(armor)
+        setDisplayArmor(false)
     }
 
     const sellPotion = () => {
@@ -72,6 +109,8 @@ export default function UserInventory() {
         
         setuserGold(gold)
         setuserPotion(potion)
+        setDisplayPotion(false)
+        console.log(displayPotion)
     }
 
     return (
@@ -81,20 +120,37 @@ export default function UserInventory() {
             <div>
                 <div>
                     <h3>Weapon:</h3>
-                    <p>{userWeapon}</p>
-                    <button onClick={sellWeapon}>Sell {userWeapon} for </button>
-                    {/* <button onClick={sellWeapon}>Sell {userWeapon} for {userData.inventoryWeapons[0].sellPrice}</button> */}
-                    
+                    {displayWeapon ? 
+                        <div>
+                            <p>Damage: {userWeapon}</p>
+                            <p>Special: {weaponSpecial}</p>
+                            <img src={weaponImg} alt="weapon"></img>
+                            <button onClick={sellWeapon}>Sell {weaponPrice} for </button>
+                        </div> : 
+                        <p>You don't have weapon</p>
+                    }
                 </div>
                 <div>
                     <h3>Armor:</h3>
-                    <p>{userArmor}</p>
-                    <button onClick={sellArmor}>Sell {userArmor} for </button>
+                    {displayArmor ? 
+                        <div>
+                            <p>Defence: {userArmor}</p>
+                            <img src={armorImg} alt="armor"></img>
+                            <button onClick={sellArmor}>Sell {armorPrice} for </button>
+                        </div> : 
+                        <p>You don't have armor</p>
+                    }
                 </div>
                 <div>
                     <h3>Potion:</h3>
-                    <p>{userPotion}</p>
-                    <button onClick={sellPotion}>Sell {userPotion} for </button>
+                    {displayPotion ? 
+                        <div>
+                            <p>Heals: {userPotion}</p>
+                            <img src={potionImg} alt="potion"></img>
+                            <button onClick={sellPotion}>Sell {potionPrice} for </button>
+                        </div> : 
+                        <p>You don't have potion</p>
+                    }
                 </div>
             </div>
         </div>

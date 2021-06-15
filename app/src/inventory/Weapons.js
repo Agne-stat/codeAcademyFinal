@@ -8,7 +8,7 @@ export const Weapons = [
         "damage":8,
         "price":40,
         "sellPrice":5,
-        "special":20,
+        "special":"has 20% chance to block enemy attack",
         "image":sword
     },
     {
@@ -17,7 +17,7 @@ export const Weapons = [
         "damage":6,
         "price":300,
         "sellPrice":80,
-        "special":30,
+        "special":"has 30% chance to do double damage",
         "image":bow
     },
     {
@@ -26,7 +26,7 @@ export const Weapons = [
         "damage":5,
         "price":1000,
         "sellPrice":400,
-        "special":40,
+        "special":"has 40% chance to heal hero on enemy attack by 10hit points",
         "image":magic
     }
 ]
