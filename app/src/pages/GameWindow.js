@@ -30,18 +30,10 @@ export default function GameWindow() {
                     
                     <div className="game-navigation">
                          <div className="game-container">
-                              <div className="game-item">
-                                   <Link to='/arena'>ARENA</Link>
-                              </div>
-                              <div className="game-item">
-                                   <Link to='/leadersboard'>LEADERS BOARD</Link>
-                              </div>
-                              <div className="game-item">
-                                   <Link to='/shop'>SHOP</Link>
-                              </div>
-                              <div className="game-item">
-                                   <Link to='/inventory'>INVENTORY</Link>
-                              </div>
+                              <Link to='/arena' className="game-item">ARENA</Link>
+                              <Link to='/leadersboard' className="game-item">LEADERS BOARD</Link>
+                              <Link to='/shop' className="game-item">SHOP</Link>
+                              <Link to='/inventory' className="game-item">INVENTORY</Link>
                          </div>
                     </div>
                </div>
