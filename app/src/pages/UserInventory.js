@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { DataContext } from '../App';
 import UserProfile from '../components/UserProfile';
+import BackButton from '../components/BackButton';
 import axios from 'axios';
 import './styles/Inventory.css'
 
@@ -120,7 +121,11 @@ export default function UserInventory() {
     return (
         <main className="inventory">
             <div className="inventory-container">
-                <UserProfile user={userData} gold={userGold} health={userData.health}></UserProfile>
+                <div className="user-container">
+                    <UserProfile user={userData} gold={userGold} health={userData.health}></UserProfile>
+                    <BackButton></BackButton>
+                </div>
+                
                 <div className="inventory-items-container">
                     <h1>Your Inventory</h1>
                     <div className="inventory-items">

@@ -1,0 +1,173 @@
+.shop {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shop-container {
+  margin: 0 auto;
+  padding: 20px 0;
+  width: 800px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shop-items-container {
+  margin: auto 0;
+  padding: 20px 0 0 30px;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.shop-items {
+  margin: auto 0;
+  padding: 20px 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  width: 100%;
+  text-align: left;
+}
+
+.weapons-items {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.weapons {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.weapons div {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.weapons div img {
+  width: auto;
+  height: 80%;
+  display: flex;
+}
+
+.weapons div button {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3d1c7977;
+  width: 150px;
+  font-size: 0.9em;
+  color: #fff;
+}
+
+.weapons div button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.armors-items {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.armors {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.armors div {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.armors div img {
+  width: auto;
+  height: 80%;
+  display: flex;
+}
+
+.armors div button {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3d1c7977;
+  width: 150px;
+  font-size: 0.9em;
+  color: #fff;
+}
+
+.armors div button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.potions-items {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.potions {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.potions div {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.potions div img {
+  width: auto;
+  height: 80%;
+  display: flex;
+}
+
+.potions div button {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3d1c7977;
+  width: 150px;
+  font-size: 0.9em;
+  color: #fff;
+}
+
+.potions div button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}

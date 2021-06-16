@@ -5,7 +5,8 @@ import { Potions } from '../inventory/Potions'
 import axios from 'axios'
 import { DataContext } from '../App';
 import UserProfile from '../components/UserProfile'
-import './Shop.css'
+import BackButton from '../components/BackButton'
+import './styles/Shop.css'
 
 export default function Shop() {
     const { userData } = useContext(DataContext)
@@ -89,57 +90,82 @@ export default function Shop() {
 
 
     return (
-        <div>
-            <UserProfile user={userData} gold={userGold} health={userData.health}></UserProfile>
-           <h1>Shop</h1>
-           <div>
-               <div>
-                   <h3>Weapons</h3>
-                       <div>
-                            <button disabled={userGold<weapons[0].price} onClick={()=>addWeapon(0)}>{weapons[0].price}</button>
-                            <img src={weapons[0].image} alt="weapon"></img>
-                       </div>
-                       <div>
-                            <button disabled={userGold<weapons[1].price} onClick={()=>addWeapon(1)}>{weapons[1].price}</button>
-                            <img src={weapons[1].image} alt="weapon"></img>
-                       </div>
-                       <div>
-                            <button disabled={userGold<weapons[2].price} onClick={()=>addWeapon(2)}>{weapons[2].price}</button>
-                            <img src={weapons[2].image} alt="weapon"></img>
-                       </div>
-                   
-               </div>
-               <div>
-                   <h3>Armors</h3>
-                       <div>
-                            <button disabled={userGold<armors[0].price} onClick={()=>addArmor(0)}>{armors[0].price}</button>
-                            <img src={armors[0].image} alt="armor"></img>
-                       </div>
-                       <div>
-                            <button disabled={userGold<armors[1].price} onClick={()=>addArmor(1)}>{armors[1].price}</button>
-                            <img src={armors[1].image} alt="armor"></img>
-                       </div>
-                       <div>
-                            <button disabled={userGold<armors[2].price} onClick={()=>addArmor(2)}>{armors[2].price}</button>
-                            <img src={armors[2].image} alt="armor"></img>
-                       </div>
-               </div>
-               <div>
-                   <h3>Potions</h3>
-                       <div>
-                            <button disabled={userGold<potions[0].price} onClick={()=>addPotion(0)}>{potions[0].price}</button>
-                            <img src={potions[0].image} alt="potion"></img>
-                       </div>
-                       <div>
-                            <button disabled={userGold<potions[1].price} onClick={()=>addPotion(1)}>{potions[1].price}</button>
-                            <img src={potions[1].image} alt="potion"></img>
-                       </div>
-                       <div>
-                            <button disabled={userGold<potions[2].price} onClick={()=>addPotion(2)}>{potions[2].price}</button>
-                            <img src={potions[2].image} alt="potion"></img>
-                       </div>
-               </div>
-           </div>
-        </div>
+        <main className="shop">
+            <div className="shop-container">
+                <div className="user-container">
+                    <UserProfile user={userData} gold={userGold} health={userData.health}></UserProfile>
+                    <BackButton></BackButton>
+                </div>
+                
+                <div className="shop-items-container">
+                    <h1>Shop</h1>
+                    <div className="shop-items">
+                        <div className="weapons-items">
+                            <h3>Weapons</h3>
+                            <div className="weapons">
+                                    <div>
+                                        <img src={weapons[0].image} alt="weapon"></img>
+                                        <button disabled={userGold<weapons[0].price} onClick={()=>addWeapon(0)}>{weapons[0].price}</button>
+                                            
+                                    </div>
+                                    <div>
+                                        <img src={weapons[1].image} alt="weapon"></img>
+                                        <button disabled={userGold<weapons[1].price} onClick={()=>addWeapon(1)}>{weapons[1].price}</button>
+                                            
+                                    </div>
+                                    <div>
+                                        <img src={weapons[2].image} alt="weapon"></img>
+                                        <button disabled={userGold<weapons[2].price} onClick={()=>addWeapon(2)}>{weapons[2].price}</button>
+                                            
+                                    </div>
+                            </div>
+                        </div>
+                        <div className="armors-items">
+                            <h3>Armors</h3>
+                            <div className="armors">
+                                <div>
+                                    <img src={armors[0].image} alt="armor"></img>
+                                    <button disabled={userGold<armors[0].price} onClick={()=>addArmor(0)}>{armors[0].price}</button>
+                                        
+                                </div>
+                                <div>
+                                    <img src={armors[1].image} alt="armor"></img>
+                                    <button disabled={userGold<armors[1].price} onClick={()=>addArmor(1)}>{armors[1].price}</button>
+                                        
+                                </div>
+                                <div>
+                                    <img src={armors[2].image} alt="armor"></img>
+                                    <button disabled={userGold<armors[2].price} onClick={()=>addArmor(2)}>{armors[2].price}</button>
+                                </div>
+                            </div>
+                                
+                        </div>
+                        <div className="potions-items">
+                            <h3>Potions</h3>
+                            <div className="potions">
+                                <div>
+                                    <img src={potions[0].image} alt="potion"></img>
+                                    <button disabled={userGold<potions[0].price} onClick={()=>addPotion(0)}>{potions[0].price}</button>
+                                        
+                                </div>
+                                <div>
+                                    <img src={potions[1].image} alt="potion"></img>
+                                    <button disabled={userGold<potions[1].price} onClick={()=>addPotion(1)}>{potions[1].price}</button>
+                                        
+                                </div>
+                                <div>
+                                    <img src={potions[2].image} alt="potion"></img>
+                                    <button disabled={userGold<potions[2].price} onClick={()=>addPotion(2)}>{potions[2].price}</button>
+                                        
+                                </div>
+                            </div>
+                                
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+        </main>
     )
 }

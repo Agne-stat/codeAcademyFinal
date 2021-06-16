@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import axios from 'axios'
 
 export default function SingleUser() {
@@ -64,6 +65,7 @@ export default function SingleUser() {
                 {userPotion && <p>{singleUser.inventoryPotions[0].heals}</p>}
                 {noInventory && <p>No inventory</p>}
             </div>
+            <BackButton></BackButton>
         </div>
     )
 }

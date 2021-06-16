@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { Enemies } from '../inventory/Enemies'
 import { DataContext } from '../App';
+import BackButton from '../components/BackButton';
 import axios from 'axios';
 
 export default function Arena() {
@@ -191,6 +192,8 @@ export default function Arena() {
                     </div>
                 </div>
             </div>
+
+            <BackButton></BackButton>
         </div>
     )
 }

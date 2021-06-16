@@ -10,8 +10,6 @@ import Shop from './pages/Shop'
 import UserInventory from './pages/UserInventory'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
-import Header from './components/Header'
-import Footer from './components/Footer'
 import SingleUser from './pages/SingleUser';
 
 export const DataContext = React.createContext();
@@ -29,15 +27,23 @@ function App() {
     })
     setuserData(userData)
 
+    console.log(id)
+
   }, [])
+
   
   return (
     <div className="App">
       <DataContext.Provider value={{userData, setuserData }}>
         <Router>
-          <Header></Header>
           <Switch>
             <Route exact path='/'>
+              <Login></Login>
+            </Route>
+            {/* <Route exact path='/'>
+              <GameWindow></GameWindow>
+            </Route> */}
+            <Route path='/home'>
               <GameWindow></GameWindow>
             </Route>
             <Route path='/arena'>
@@ -62,7 +68,6 @@ function App() {
               <SingleUser></SingleUser>
             </Route>
           </Switch>
-          <Footer></Footer>
         </Router>
       </DataContext.Provider>
     </div>

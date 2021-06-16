@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link, Redirect } from 'react-router-dom';
 import logo from '../images/logo.png'
+import { DataContext } from '../App';
 import './Header.css'
 
 export default function Header() {
+    const { logedIn, setLogedIn } = useContext(DataContext)
+
     const [redirect, setRedirect] = useState(null);
 
     const logout = () => {

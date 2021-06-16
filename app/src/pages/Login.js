@@ -1,13 +1,21 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import axios from 'axios';
 
 export default function Login() {
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(null);
+
+    useEffect(() => {
+        const id = localStorage.getItem('gameUser-id')
+        if(id === null) {
+            console.log("not loged in")
+          } else {
+            setRedirect('/home');
+          }
+    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,7 +24,7 @@ export default function Login() {
         .then((res) => {
             localStorage.setItem('gameUser-id',res.data._id)
             console.log(res)
-            setRedirect('/')
+            setRedirect('/home')
         })
         .catch((err) => console.log(err))
     }

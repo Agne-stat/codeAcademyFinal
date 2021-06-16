@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import BackButton from '../components/BackButton'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
@@ -39,6 +40,7 @@ export default function LeadersBoard() {
                     ))}
                 </tbody>
             </table>
+            <BackButton></BackButton>
         </div>
     )
 }
