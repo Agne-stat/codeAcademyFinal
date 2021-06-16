@@ -8,7 +8,7 @@ export default function UserProfile({user, gold, health}) {
                 <img src={user.image} alt="profile pic"></img>
             </div>
             <div className="user-info">
-                <div>GOLD: <span>{gold}</span></div>
+                <div>GOLD: <span>{user.gold}</span></div>
                 <div>HEALTH: <span>{health}</span></div>
             </div>
         </div>

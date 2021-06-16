@@ -171,3 +171,7 @@ h1 {
   cursor: pointer;
   opacity: 0.5;
 }
+
+.disabled {
+  opacity: 0.3;
+}

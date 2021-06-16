@@ -3,6 +3,7 @@ import { Enemies } from '../inventory/Enemies'
 import { DataContext } from '../App';
 import BackButton from '../components/BackButton';
 import axios from 'axios';
+import './styles/Arena.css'
 
 export default function Arena() {
     const { userData, setuserData } = useContext(DataContext)
@@ -12,6 +13,9 @@ export default function Arena() {
     const [userDamage, setUserDamage] = useState(3)
     const [userDefence, setUserDefence] = useState(1)
     const [userHealing, setUserHealing] = useState(0)
+
+    const [useWeapon, setUseWeapon] = useState(false)
+    const [useArmor, setUseArmor] = useState(false)
 
     const [monster, setMonster] = useState([])
     const [monsterHealth, setMonsterHealth] = useState(100)
@@ -38,13 +42,14 @@ export default function Arena() {
 
         if(userData.inventoryWeapons.length === 0) {
             setUserDamage(3)
+            setUseWeapon(false)
         } else {
             setUserDamage(userData.inventoryWeapons[0].damage)
-
         }
 
         if(userData.inventoryArmors.length === 0) {
             setUserDefence(1)
+            setUseArmor(false)
         } else {
             setUserDefence(userData.inventoryArmors[0].defence)
         }
@@ -74,10 +79,29 @@ export default function Arena() {
             setChangeMonster(true)
         }
 
-        let userDamageLevel = Math.floor(Math.random() * userDamage+1)
-        let monsterDamageLevel = Math.floor(Math.random() * monsterDamage+1)
-        let armor = Math.floor(Math.random() * userDefence+1)
+        console.log(useWeapon, useArmor )
+        // pridedu
+        let userDamageLevel;
+        let armor
+        if (useWeapon === true) {
+            userDamageLevel = Math.floor(Math.random() * userDamage+1)
+        } else {
+            userDamageLevel = Math.floor(Math.random() * 4)
+        }
+
+        if(useArmor === true) {
+           armor = Math.floor(Math.random() * userDefence+1)
+        } else {
+            armor = Math.floor(Math.random() * 2)
+        }
+        
+        //buvo
+        // let userDamageLevel = Math.floor(Math.random() * userDamage+1)
+        // let armor = Math.floor(Math.random() * userDefence+1)
         console.log(armor)
+        console.log(userDamageLevel)
+
+        let monsterDamageLevel = Math.floor(Math.random() * monsterDamage+1)
 
         // weapon's special effects
         if(userData.inventoryWeapons.length === 0) {
@@ -161,39 +185,70 @@ export default function Arena() {
         setUserHealing(0)
     }
 
+
     return (
-        <div>
-            <h1>Arena</h1>
-            <h2>{userGold}</h2>
-            <div className="arena-wrapper">
-                <div className="arena-player">
-                    <div className="player"></div>
-                    <div className="player-info">
-                        <div>{userHealth}</div>
+        <main className="arena">
+            <div className="arena-container">
+                <div className="arena-wrapper">
+                    <div className="arena-player">
+                        <div className="player">
+                            <img src={userData.image} alt="user"></img>
+                        </div>
+                        <div className="player-info">
+                            <div>{userHealth}</div>
+                            <h2>{userGold}</h2>
 
-                        <div>{userDamage}</div>
-                        <div>{userDefence}</div>
-                        <div>{userHealing}</div>
+                            <div>{userDamage}</div>
+                            <div>{userDefence}</div>
+                            <div>{userHealing}</div>
+                        </div>
+                        
                     </div>
-                    <button disabled={userHealing === 0}  onClick={takePotion}>Drink potion</button>
-                </div>
 
-                <div className="arena-controler">
-                    <div>
+                    <div className="arena-controler">
                         <button onClick={startFight}>FIGHT !</button>
                     </div>
+
+                    <div className="arena-monster">
+                        <div className="monster"></div>
+                        <div className="monster-info">
+                            <div>{monsterHealth}</div>
+                            <div>{monsterDamage}</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="arena-monster">
-                <div className="monster"></div>
-                    <div className="monster-info">
-                        <div>{monsterHealth}</div>
-                        <div>{monsterDamage}</div>
+                <div className="arena-items">
+                    <BackButton></BackButton>
+                    <div className="user-inventory">
+
+                        <button disabled={userHealing === 0}  onClick={takePotion}>Drink potion</button>
+
+                        <div className={useWeapon===true ? "used-item" : "user-weapon"}>
+                            {userDamage !==3? 
+                                <div>
+                                    <img src={userData.inventoryWeapons[0].image} alt="weapon"></img>
+                                    <button onClick={() => setUseWeapon(true)}>Use Weapon</button>
+                                </div> :
+                                <p>You don't have weapon</p>
+                            }
+                        </div>
+                        <div className={useArmor===true ? "used-item" : "user-armor"}>
+                            {userDefence !==1 ?
+                                <div>
+                                    <img src={userData.inventoryArmors[0].image} alt="armor"></img>
+                                    <button onClick={() => setUseArmor(true)}>Use Armor</button>
+                                </div> :
+                                <p>You don't have armor</p>
+                            }
+                        </div>
+
                     </div>
                 </div>
             </div>
-
-            <BackButton></BackButton>
-        </div>
+            
+            
+            
+        </main>
     )
 }

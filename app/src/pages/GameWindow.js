@@ -6,23 +6,25 @@ import axios from 'axios';
 import './styles/GameWindow.css'
 
 export default function GameWindow() {
-     const { userData } = useContext(DataContext)
+     // const { userData } = useContext(DataContext)
 
      const [userGold, setuserGold] = useState(0)
      const [userHealth, setUserHealth] = useState(0)
      const [redirect, setRedirect] = useState(null);
+     const [userData, setUserData] = useState([])
 
      useEffect(() => {
           const id = localStorage.getItem('gameUser-id')
 
           axios.get('http://localhost:5000/user/'+ id)
                .then((res) => {
+                    setUserData(res.data)
                     setuserGold(res.data.gold)
                     setUserHealth(res.data.health)
                     console.log(res.data)
           })
 
-     }, [userData])
+     }, [])
 
      const logout = () => {
           localStorage.removeItem('gameUser-id');
