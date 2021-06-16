@@ -121,39 +121,51 @@ export default function UserInventory() {
         <main className="inventory">
             <div className="inventory-container">
                 <UserProfile user={userData} gold={userGold} health={userData.health}></UserProfile>
-                <div className="inventory-items">
+                <div className="inventory-items-container">
                     <h1>Your Inventory</h1>
                     <div className="inventory-items">
-                        <div>
+                        <div className="item">
                             <h3>Weapon:</h3>
                             {displayWeapon ? 
-                                <div>
-                                    <p>Damage: {userWeapon}</p>
-                                    <p>Special: {weaponSpecial}</p>
+                                <div className="item-info">
+                                    <div>
+                                        <p>Damage: {userWeapon}</p>
+                                        <p>Special: {weaponSpecial}</p>
+                                        <button onClick={sellWeapon}>SELL {weaponPrice} gold</button>
+                                    </div>
+                                    
                                     <img src={weaponImg} alt="weapon"></img>
-                                    <button onClick={sellWeapon}>Sell for {weaponPrice}</button>
+                                    
                                 </div> : 
                                 <p>You don't have weapon</p>
                             }
                         </div>
-                        <div>
+                        <div className="item">
                             <h3>Armor:</h3>
                             {displayArmor ? 
-                                <div>
-                                    <p>Defence: {userArmor}</p>
+                                <div className="item-info">
+                                    <div>
+                                        <p>Defence: {userArmor}</p>
+                                        <button onClick={sellArmor}>SELL {armorPrice} gold</button>
+                                    </div>
+                                    
                                     <img src={armorImg} alt="armor"></img>
-                                    <button onClick={sellArmor}>Sell for {armorPrice}</button>
+                                    
                                 </div> : 
                                 <p>You don't have armor</p>
                             }
                         </div>
-                        <div>
+                        <div className="item">
                             <h3>Potion:</h3>
                             {displayPotion ? 
-                                <div>
-                                    <p>Heals: {userPotion}</p>
+                                <div className="item-info">
+                                    <div>
+                                        <p>Heals: {userPotion}</p>
+                                        <button onClick={sellPotion}>SELL {potionPrice} gold</button>
+                                    </div>
+                                    
                                     <img src={potionImg} alt="potion"></img>
-                                    <button onClick={sellPotion}>Sell for {potionPrice}</button>
+                                    
                                 </div> : 
                                 <p>You don't have potion</p>
                             }
