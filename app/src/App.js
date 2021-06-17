@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
     const id = localStorage.getItem('gameUser-id')
-    console.log(id)
+
     axios.get('http://localhost:5000/user/'+ id)
     .then((res) => {
       setuserData(res.data)

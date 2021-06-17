@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router';
+import './styles/Signup.css'
 
 export default function Signup() {
     const [username, setUsername] = useState('');
@@ -11,62 +12,73 @@ export default function Signup() {
     const [errorName, setErrorName] = useState(null);
     const [errorPsw1, setErrorPsw1] = useState(null)
 
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    useEffect(() => {
         setErrorName('');
         setErrorPsw1('');
         setError('')
+    }, [username, passwordOne, passwordTwo])
 
-        if(passwordOne === passwordTwo) {
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if(username === '') {
+            setErrorName("Enter username")
+        } else if (username.length < 4 || username.length > 20) {
+            setErrorName("Username should be between 4 and 20 digits")
+        } else if (passwordOne.length < 4 || passwordOne.length > 20) {
+            setErrorPsw1("Password should be between 4 and 20 digits")
+        } else if (passwordOne !== passwordTwo) {
+            setErrorPsw1("Passwords should match")
+        } else {
             axios.post('http://localhost:5000/signup', {username, password:passwordOne})
             .then((res) => {
-                console.log(res)
-                if(res.data.username === false) {
-                    setErrorName('Username already exists')
-                }
-                if(res.data.password.length < 4 || res.data.password.length > 20) {
-                    setErrorPsw1('Password lenght must be between 5 and 20')
-                }
-
                 setRedirect('/login')
             })
-            .catch((err) => console.log(err))
-        } else {
-            setError('Passwords should match')
+            .catch((err) => {
+                console.log(err)
+                setError('Username already exists')
+            })
         }
         
-        
+            
     }
     if(redirect) return <Redirect exact to={redirect}></Redirect>
 
     return (
-        <main>
-            <h1>Signup</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Username</label>
-                    <input
-                    type="text" value={username} onChange={(e) => setUsername(e.target.value)}></input>
+        <main className="signup">
+            <div className="signup-container">
+                <div className="signup-item">
+                    <h1>Signup</h1>
+                </div>
+                
+                <form onSubmit={handleSubmit}>
+                    <div className="form-item">
+                        <label>Username</label>
+                        <input
+                        type="text" placeholder="username" value={username}  onChange={(e) => setUsername(e.target.value)}></input>
+                    </div>
                     {errorName && <p>{errorName}</p>}
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input
-                    type="password" value={passwordOne} onChange={(e) => setPasswordOne(e.target.value)}></input>
+                    <div className="form-item">
+                        <label>Password</label>
+                        <input
+                        type="password" placeholder="password" value={passwordOne} onChange={(e) => setPasswordOne(e.target.value)}></input>
+                    </div>
                     {errorPsw1 && <p>{errorPsw1}</p>}
-                </div>
-                <div>
-                    <label>Confirm your password</label>
-                    <input
-                    type="password" value={passwordTwo} onChange={(e) => setPasswordTwo(e.target.value)}></input>
-                </div>
-                <div>
-                    <button>Login</button>
-                </div>
-
-                {error && <p>{error}</p>}
-            </form>
+                    <div className="form-item">
+                        <label>Confirm your password</label>
+                        <input
+                        type="password" placeholder="password" value={passwordTwo} onChange={(e) => setPasswordTwo(e.target.value)}></input>
+                    </div>
+                    {error && <p>{error}</p>}
+                    <div className="form-item">
+                        <button>Signup</button>
+                    </div>
+                    
+                </form>
+            </div>
+            
         </main>
     )
 }

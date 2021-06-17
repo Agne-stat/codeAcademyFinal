@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
+// import validator from 'validator'
 
 
 let UserSchema = new mongoose.Schema({
@@ -14,7 +15,6 @@ let UserSchema = new mongoose.Schema({
     password: {
         type: String, 
         minLength: 4,
-        digits: 1,
         required: true,
     },
 

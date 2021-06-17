@@ -5,12 +5,30 @@ import User from '../models/userModel.js';
 
 const signUp = async (req, res) => {
     let user = new User(req.body)
+    
     try {
       let createdUser = await user.save()
       res.json(createdUser)
     } catch (e) {
-      res.status(400).json(e)
+      res.status(400).send(e)
+      console.log(e)
+      // res.status(400).json(e)
+      // if(!req.body.username) {
+      //   res.send({
+      //     success: false,
+      //     message: "Missing username"
+      //   })
+      // }
+      // if(!req.body.password.length < 4) {
+      //   res.send({
+      //     success: false,
+      //     message: "Pass"
+      //   })
+      // }
+      
     }
+
+    
 }
 
 const login = async (req, res) => {
@@ -22,7 +40,7 @@ const login = async (req, res) => {
         if(!user.image) {
           user.image = `http://localhost:5000/images/avatar.png`;
         }
-        let response = await bcrypt.compare(req.body.password, user.password)
+        let response = await bcrypt.compare(req.body.password, user.password);
 
     if (!response) throw 'Incorrect password'
     }else {
