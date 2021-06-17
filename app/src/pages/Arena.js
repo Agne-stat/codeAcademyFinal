@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useEffect, useContext, useState, useRef} from 'react'
 import { Enemies } from '../inventory/Enemies'
 import { DataContext } from '../App';
 import BackButton from '../components/BackButton';
@@ -21,8 +21,11 @@ export default function Arena() {
     const [monsterHealth, setMonsterHealth] = useState(100)
     const [monsterDamage, setMonsterDamage] = useState(0)
     const [changeMonster, setChangeMonster] = useState(true)
+    const [specialsMessage, setSpecialsMessage] = useState('')
 
     let enemies = Enemies;
+    let progressUser = useRef();
+    let progressMonster = useRef();
 
     const id = localStorage.getItem('gameUser-id');
 
@@ -69,6 +72,9 @@ export default function Arena() {
             setChangeMonster(false)
         }
 
+        progressUser.current.style.width = `${userHealth}%`;
+        progressMonster.current.style.width = `${monsterHealth}%`;
+
     }, [userData, changeMonster])
 
     const startFight = () => {
@@ -95,9 +101,7 @@ export default function Arena() {
             armor = Math.floor(Math.random() * 2)
         }
         
-        //buvo
-        // let userDamageLevel = Math.floor(Math.random() * userDamage+1)
-        // let armor = Math.floor(Math.random() * userDefence+1)
+
         console.log(armor)
         console.log(userDamageLevel)
 
@@ -113,6 +117,7 @@ export default function Arena() {
                 if(possibility === 4) {
                     monsterDamageLevel = 0
                     armor = 0
+                    setSpecialsMessage(userData.inventoryWeapons[0].special)
                 } else {
                     monsterDamageLevel = Math.floor(Math.random() * monsterDamage+1)
                 }
@@ -195,31 +200,31 @@ export default function Arena() {
                             <img src={userData.image} alt="user"></img>
                         </div>
                         <div className="player-info">
-                            <div>{userHealth}</div>
-                            <h2>{userGold}</h2>
-
-                            <div>{userDamage}</div>
-                            <div>{userDefence}</div>
-                            <div>{userHealing}</div>
+                            <div className="progress">
+                                <div className="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" ref={progressUser}></div>
+                            </div>
                         </div>
                         
                     </div>
 
                     <div className="arena-controler">
                         <button onClick={startFight}>FIGHT !</button>
+                        {specialsMessage && <p>{specialsMessage}</p>}
                     </div>
 
                     <div className="arena-monster">
                         <div className="monster"></div>
                         <div className="monster-info">
-                            <div>{monsterHealth}</div>
-                            <div>{monsterDamage}</div>
+                            <div className="progress">
+                                <div className="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" ref={progressMonster}></div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div className="arena-items">
                     <BackButton></BackButton>
+                    <h2 className="user-gold">Gold: {userGold}</h2>
                     <div className="user-inventory">
 
                         <button className={userHealing===0 ? "used-potion" : "potion"}  onClick={takePotion}>Drink potion</button>

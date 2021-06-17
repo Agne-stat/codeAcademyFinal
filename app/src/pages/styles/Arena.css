@@ -233,3 +233,23 @@
   font-weight: 700;
   opacity: 0.6;
 }
+
+.progress {
+  display: flex;
+  width: 100%;
+  height: 20px;
+  background-color: #c3c2c73a;
+  border-radius: 20px;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 20px;
+  background-color: #3d1c7977;
+  border-radius: 20px;
+}
+
+.user-gold {
+  align-self: center;
+  color: #fff;
+}
