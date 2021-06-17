@@ -153,7 +153,6 @@ h1 {
 .potions div img {
   width: auto;
   height: 80%;
-  display: flex;
 }
 
 .potions div button {
@@ -216,4 +215,26 @@ h1 {
 .items-title p {
   padding: 2px 20px;
   color: #fff;
+}
+
+/* item info */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }

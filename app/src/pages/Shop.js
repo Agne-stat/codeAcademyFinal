@@ -135,16 +135,22 @@ export default function Shop() {
                             <div className={haveWeapon ? "inInventory" : "weapons"}>
                                     <div className={userGold<weapons[0].price ? "disabled" : ""}>
                                         <img src={weapons[0].image} alt="weapon"></img>
-                                        <button onClick={()=>addWeapon(0)}>{weapons[0].price}</button>
+                                        <button onClick={()=>addWeapon(0)} className="tooltip">{weapons[0].price}
+                                        <span className="tooltiptext">Damage: {weapons[0].damage}, Special: {weapons[0].special}</span>
+                                        </button>
                                     </div>
                                     <div className={userGold<weapons[1].price ? "disabled" : ""}>
                                         <img src={weapons[1].image} alt="weapon"></img>
-                                        <button onClick={()=>addWeapon(1)}>{weapons[1].price}</button>
+                                        <button onClick={()=>addWeapon(1)} className="tooltip">{weapons[1].price}
+                                        <span className="tooltiptext">Damage: {weapons[1].damage}, Special: {weapons[1].special}</span>
+                                        </button>
                                             
                                     </div >
                                     <div className={userGold<weapons[2].price ? "disabled" : ""}>
                                         <img src={weapons[2].image} alt="weapon"></img>
-                                        <button  onClick={()=>addWeapon(2)}>{weapons[2].price}</button>
+                                        <button  onClick={()=>addWeapon(2)} className="tooltip">{weapons[2].price}
+                                        <span className="tooltiptext">Damage: {weapons[2].damage}, Special: {weapons[2].special}</span>
+                                        </button>
                                             
                                     </div>
                             </div>
@@ -158,17 +164,23 @@ export default function Shop() {
                             <div className={haveArmor ? "inInventory" : "armors"}>
                                 <div className={userGold<armors[0].price ? "disabled" : ""}>
                                     <img src={armors[0].image} alt="armor"></img>
-                                    <button  onClick={()=>addArmor(0)}>{armors[0].price}</button>
+                                    <button  onClick={()=>addArmor(0)} className="tooltip">{armors[0].price}
+                                    <span className="tooltiptext">Defence: {armors[0].defence}</span>
+                                    </button>
                                         
                                 </div>
                                 <div className={userGold<armors[1].price ? "disabled" : ""}>
                                     <img src={armors[1].image} alt="armor"></img>
-                                    <button  onClick={()=>addArmor(1)}>{armors[1].price}</button>
+                                    <button  onClick={()=>addArmor(1)} className="tooltip">{armors[1].price}
+                                    <span className="tooltiptext">Defence: {armors[1].defence}</span>
+                                    </button>
                                         
                                 </div>
                                 <div className={userGold<armors[2].price ? "disabled" : ""}>
                                     <img src={armors[2].image} alt="armor"></img>
-                                    <button  onClick={()=>addArmor(2)}>{armors[2].price}</button>
+                                    <button  onClick={()=>addArmor(2)} className="tooltip">{armors[2].price}
+                                    <span className="tooltiptext">Defence: {armors[2].defence}</span>
+                                    </button>
                                 </div>
                             </div>
                                 
@@ -181,17 +193,23 @@ export default function Shop() {
                             <div className={havePotion ? "inInventory" : "potions"}>
                                 <div className={userGold<potions[0].price ? "disabled" : ""}>
                                     <img src={potions[0].image} alt="potion"></img>
-                                    <button  onClick={()=>addPotion(0)}>{potions[0].price}</button>
+                                    
+                                    <button  onClick={()=>addPotion(0)}className="tooltip">{potions[0].price} <span className="tooltiptext">Heals: {potions[0].heals}</span>
+                                    </button>
                                         
                                 </div>
                                 <div className={userGold<potions[1].price ? "disabled" : ""}>
                                     <img src={potions[1].image} alt="potion"></img>
-                                    <button  onClick={()=>addPotion(1)}>{potions[1].price}</button>
+                                    <button  onClick={()=>addPotion(1)} className="tooltip">{potions[1].price}
+                                    <span className="tooltiptext">Heals: {potions[1].heals}</span>
+                                    </button>
                                         
                                 </div>
                                 <div className={userGold<potions[1].price ? "disabled" : ""}>
                                     <img src={potions[2].image} alt="potion"></img>
-                                    <button  onClick={()=>addPotion(2)}>{potions[2].price}</button>
+                                    <button  onClick={()=>addPotion(2)} className="tooltip">{potions[2].price}
+                                    <span className="tooltiptext">Heals: {potions[2].heals}</span>
+                                    </button>
                                         
                                 </div>
                             </div>
