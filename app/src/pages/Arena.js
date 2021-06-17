@@ -222,9 +222,9 @@ export default function Arena() {
                     <BackButton></BackButton>
                     <div className="user-inventory">
 
-                        <button disabled={userHealing === 0}  onClick={takePotion}>Drink potion</button>
+                        <button className={userHealing===0 ? "used-potion" : "potion"}  onClick={takePotion}>Drink potion</button>
 
-                        <div className={useWeapon===true ? "used-item" : "user-weapon"}>
+                        <div className={useWeapon===true ? "used-item" : "user-inventory-item"}>
                             {userDamage !==3? 
                                 <div>
                                     <img src={userData.inventoryWeapons[0].image} alt="weapon"></img>
@@ -233,7 +233,7 @@ export default function Arena() {
                                 <p>You don't have weapon</p>
                             }
                         </div>
-                        <div className={useArmor===true ? "used-item" : "user-armor"}>
+                        <div className={useArmor===true ? "used-item" : "user-inventory-item"}>
                             {userDefence !==1 ?
                                 <div>
                                     <img src={userData.inventoryArmors[0].image} alt="armor"></img>

@@ -25,6 +25,7 @@
 }
 
 .arena-items {
+  padding: 20px 0 0 0;
   width: 100%;
   height: 20%;
   display: flex;
@@ -45,6 +46,8 @@
 .player {
   width: 100%;
   height: 90%;
+  background-color: #c3c2c73a;
+  border-radius: 15px;
 }
 
 .player img {
@@ -95,6 +98,8 @@
 .monster {
   width: 100%;
   height: 90%;
+  background-color: #c3c2c73a;
+  border-radius: 15px;
 }
 
 .monster-info {
@@ -106,16 +111,18 @@
 }
 
 .user-inventory {
+  padding: 0 0 0 20px;
   height: 100%;
-  width: 80%;
+  width: 60%;
   display: flex;
   justify-content: space-between;
   align-content: center;
 }
 
 .user-inventory div {
+  padding: 0 10px;
   height: 100%;
-  width: 30%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -128,6 +135,101 @@
   width: 90px;
 }
 
+.user-inventory-item div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  background-color: #c3c2c73a;
+  border-radius: 10px;
+}
+
+.user-inventory-item p {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  background-color: #c3c2c73a;
+  border-radius: 10px;
+}
+
+.user-inventory-item div img {
+  height: 100%;
+  width: 100%;
+}
+
+.user-inventory-item div button {
+  padding: 5px 0;
+  background-color: #3d1c7977;
+  border: none;
+  border-radius: 5px;
+}
+
+.user-inventory-item div button:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
 .used-item {
+  height: 100%;
+  width: 100%;
   opacity: 0.3;
+}
+
+.used-item div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.used-item div button {
+  padding: 5px 0;
+  background-color: #3d1c7977;
+  border: none;
+  border-radius: 5px;
+}
+
+.used-item div img {
+  height: 100%;
+  width: 100%;
+}
+
+.user-inventory .potion {
+  margin: 0 auto;
+  padding: 10px 20px;
+  justify-content: center;
+  align-self: center;
+  border: none;
+  border-radius: 5px;
+  background-color: #3d1c7977;
+  font-size: 1em;
+  color: #fff;
+  font-weight: 700;
+}
+
+.user-inventory .potion:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.used-potion {
+  margin: 0 auto;
+  padding: 10px 20px;
+  justify-content: center;
+  align-self: center;
+  border: none;
+  border-radius: 5px;
+  background-color: #3d1c7977;
+  font-size: 1em;
+  color: #fff;
+  font-weight: 700;
+  opacity: 0.6;
 }
