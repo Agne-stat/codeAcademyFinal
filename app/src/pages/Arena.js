@@ -117,8 +117,18 @@ export default function Arena() {
                 if(possibility === 4) {
                     monsterDamageLevel = 0
                     armor = 0
-                    setSpecialsMessage(userData.inventoryWeapons[0].special)
+                    if(userData.inventoryWeapons[0].special === 'has 20% chance to block enemy attack') {
+                        setSpecialsMessage('Enemy attack was bloked!')
+                    } else if (userData.inventoryWeapons[0].special === 'has 30% chance to do double damage') {
+                        setSpecialsMessage('Your damage was doubled!')
+                    } else if (userData.inventoryWeapons[0].special === 'has 40% chance to heal hero on enemy attack by 10hit points') {
+                        setSpecialsMessage('You have been heald by 10 hit points!')
+                    } else {
+                        setSpecialsMessage('')
+                    }
+                    
                 } else {
+                    setSpecialsMessage('')
                     monsterDamageLevel = Math.floor(Math.random() * monsterDamage+1)
                 }
                 console.log(monsterDamageLevel)
@@ -140,25 +150,48 @@ export default function Arena() {
         }
 
         
-
+        
+      
         let health = userHealth - monsterDamageLevel + armor
         console.log(health)
-        axios.put('http://localhost:5000/updateUserHealth/'+id, {health})
+
+        if(health > 0) {
+            axios.put('http://localhost:5000/updateUserHealth/'+id, {health})
             .then((res) => {
                 console.log(res)
             })
         
-        setUserHealth(health)
+            setUserHealth(health)
 
-        let gold = userGold + Math.floor(Math.random() * 11)
+            let gold = userGold + Math.floor(Math.random() * 11)
 
-        axios.put('http://localhost:5000/updateUserData/'+id, {gold})
+            axios.put('http://localhost:5000/updateUserData/'+id, {gold})
             .then((res) => {
                 console.log(res)
             })
 
-        setUserGold(gold)
+            setUserGold(gold)
 
+        } else {
+            console.log('LOOOOOOOOSTTTTTT')
+            health = 50;
+            axios.put('http://localhost:5000/updateUserHealth/'+id, {health})
+            .then((res) => {
+                console.log(res)
+            })
+        
+            setUserHealth(health)
+
+            let gold = Math.floor(userGold / 2)
+
+            axios.put('http://localhost:5000/updateUserData/'+id, {gold})
+            .then((res) => {
+                console.log(res)
+            })
+
+            setUserGold(gold)
+        }
+        
         let healthMonster = monsterHealth - userDamageLevel;
 
         setMonsterHealth(healthMonster)
@@ -208,8 +241,13 @@ export default function Arena() {
                     </div>
 
                     <div className="arena-controler">
-                        <button onClick={startFight}>FIGHT !</button>
-                        {specialsMessage && <p>{specialsMessage}</p>}
+                        <div className="button">
+                            <button onClick={startFight}>FIGHT !</button>
+                        </div>
+                        <div className="message">
+                            {specialsMessage && <p>{specialsMessage}</p>}
+                        </div>
+                        
                     </div>
 
                     <div className="arena-monster">

@@ -65,14 +65,36 @@
 
 .arena-controler {
   width: 20%;
+  height: 100%;
   display: flex;
+  flex-direction: column;
 }
 
-.arena-controler button {
-  margin: 0 auto;
+.arena-controler .button {
+  width: 100%;
+  height: 60%;
+  display: flex;
+  align-self: start;
+}
+
+.arena-controler .message {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+}
+
+.arena-controler p {
+  margin: 0 20px 0 20px;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.arena-controler .button button {
+  margin: 0 auto 30px auto;
   padding: 10px 20px;
   justify-content: center;
-  align-self: center;
+  align-self: flex-end;
   border: none;
   border-radius: 5px;
   background-color: #791c248f;
