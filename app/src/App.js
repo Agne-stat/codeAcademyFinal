@@ -23,9 +23,8 @@ function App() {
     axios.get('http://localhost:5000/user/'+ id)
     .then((res) => {
       setuserData(res.data)
-      console.log(res.data)
+
     })
-    setuserData(userData)
 
     console.log(id)
 
@@ -40,9 +39,6 @@ function App() {
             <Route exact path='/'>
               <Login></Login>
             </Route>
-            {/* <Route exact path='/'>
-              <GameWindow></GameWindow>
-            </Route> */}
             <Route path='/home'>
               <GameWindow></GameWindow>
             </Route>

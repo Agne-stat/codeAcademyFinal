@@ -48,9 +48,11 @@
   height: 90%;
   background-color: #c3c2c73a;
   border-radius: 15px;
+  display: flex;
 }
 
 .player img {
+  margin: auto 0;
   width: 100%;
   height: auto;
 }
@@ -122,6 +124,13 @@
   height: 90%;
   background-color: #c3c2c73a;
   border-radius: 15px;
+  display: flex;
+}
+
+.monster img {
+  margin: auto 0;
+  width: 100%;
+  height: auto;
 }
 
 .monster-info {

@@ -8,6 +8,7 @@ import './styles/Arena.css'
 export default function Arena() {
     const { userData, setuserData } = useContext(DataContext)
 
+
     const [userGold, setUserGold] = useState(0)
     const [userHealth, setUserHealth] = useState(0)
     const [userDamage, setUserDamage] = useState(3)
@@ -111,7 +112,7 @@ export default function Arena() {
         if(userData.inventoryWeapons.length === 0) {
             console.log('no weapon')
         } else {
-            if(userData.inventoryWeapons[0].name === 'sword') {
+            if(userData.inventoryWeapons[0].name === 'sword' && useWeapon === true) {
                 let possibility = Math.floor(Math.random() * 5)
                 console.log(possibility)
                 if(possibility === 4) {
@@ -132,13 +133,13 @@ export default function Arena() {
                     monsterDamageLevel = Math.floor(Math.random() * monsterDamage+1)
                 }
                 console.log(monsterDamageLevel)
-            } else if (userData.inventoryWeapons[0].name === 'bow') {
+            } else if (userData.inventoryWeapons[0].name === 'bow' && useWeapon === true) {
                 let possibility = Math.floor(Math.random() * 3)
                 console.log(possibility)
                 if(possibility === 2) {
                     userDamageLevel=(Math.floor(Math.random() * userDamage+1))*2
                 }
-            } else if (userData.inventoryWeapons[0].name === 'magic wand') {
+            } else if (userData.inventoryWeapons[0].name === 'magic wand' && useWeapon === true) {
                 let possibility = Math.floor(Math.random() * 10)
                 console.log(possibility)
                 if(possibility > 4) {
@@ -173,7 +174,6 @@ export default function Arena() {
             setUserGold(gold)
 
         } else {
-            console.log('LOOOOOOOOSTTTTTT')
             health = 50;
             axios.put('http://localhost:5000/updateUserHealth/'+id, {health})
             .then((res) => {
@@ -251,7 +251,9 @@ export default function Arena() {
                     </div>
 
                     <div className="arena-monster">
-                        <div className="monster"></div>
+                        <div className="monster">
+                            <img src={monster.image} alt="monster"></img>
+                        </div>
                         <div className="monster-info">
                             <div className="progress">
                                 <div className="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" ref={progressMonster}></div>

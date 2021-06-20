@@ -1,4 +1,5 @@
 import light from '../images/light.png'
+import armor2 from '../images/armor2.png'
 import heavy from '../images/heavy.png'
 
 export const Armors = [
@@ -15,7 +16,7 @@ export const Armors = [
         "defence":7,
         "price":250,
         "sellPrice":100,
-        "image":light,
+        "image":armor2,
         "id":1
     },
     {

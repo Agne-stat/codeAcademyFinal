@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import axios from 'axios'
+import './styles/SingleUser.css'
 
 export default function SingleUser() {
     const [singleUser, setSingleUser] = useState([])
@@ -20,6 +21,37 @@ export default function SingleUser() {
         })
 
         console.log(singleUser)
+
+        // if(singleUser.inventoryWeapons.length === 0) {
+        //     setUserWeapon([])
+        //     setDisplayWeapon(false)
+        // } else {
+        //     setUserWeapon(singleUser.inventoryWeapons[0].damage)
+        //     setDisplayWeapon(false)
+        // }
+        
+        // if(singleUser.inventoryArmors.length === 0) {
+        //     setUserArmor([])
+        //     setDisplayArmor(false)
+        // } else {
+        //     setUserArmor(singleUser.inventoryArmors[0].defence)
+        //     setDisplayArmor(true)
+        // }
+
+        // if(singleUser.inventoryPotions.length === 0) {
+        //     setUserPotion([])
+        //     setDisplayPotion(false)
+        // } else {
+        //     setUserPotion(singleUser.inventoryPotions[0].heals)
+        //     setDisplayPotion(true)
+        // }
+
+        // if(userWeapon === [] && userArmor === [] && userPotion === []) {
+        //     setNoInventory(true)
+        //     console.log(userWeapon)
+        // } else {
+        //     setNoInventory(false)
+        // }
 
 
     }, [id])
@@ -55,17 +87,30 @@ export default function SingleUser() {
     }
 
     return (
-        <div>
-            <h1>Player {singleUser.username}</h1>
-            <div>
-                <h2>{singleUser.gold}</h2>
-                <button onClick={showInventory}>Inventory</button>
-                {userWeapon && <p>{singleUser.inventoryWeapons[0].name}</p>}
-                {userArmor && <p>{singleUser.inventoryArmors[0].defence}</p>}
-                {userPotion && <p>{singleUser.inventoryPotions[0].heals}</p>}
-                {noInventory && <p>No inventory</p>}
+        <main className="singleUser">
+            <div className="singleUser-container">
+                <div className="singleUser-name">
+                    <h1>{singleUser.username}</h1>
+                    <BackButton></BackButton>
+                </div>
+                
+                <div className="singleUser-info">
+                    <div className="singleUser-controler">
+                        <h2>GOLD: <span>{singleUser.gold}</span></h2>
+                        <h2>HELATH: <span>{singleUser.health}</span></h2>
+                        <button onClick={showInventory}>INVENTORY</button>
+                    </div>
+                    
+                    <div className="singleUser-inventory">
+                        {userWeapon && <img src={singleUser.inventoryWeapons[0].image} alt="weapon"></img> }
+                        {userArmor && <img src={singleUser.inventoryArmors[0].image} alt="weapon"></img>}
+                        {userPotion && <img src={singleUser.inventoryPotions[0].image} alt="weapon"></img>}
+                        {noInventory && <p>No inventory</p>}
+                    </div>
+                    
+                </div>
+                
             </div>
-            <BackButton></BackButton>
-        </div>
+        </main>
     )
 }

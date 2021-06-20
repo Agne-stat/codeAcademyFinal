@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import BackButton from '../components/BackButton'
 import axios from 'axios'
+import { DataContext } from '../App';
 import { Link } from 'react-router-dom'
+import './styles/LeadersBoard.css'
 
 export default function LeadersBoard() {
+    const { userData } = useContext(DataContext)
+
     const [allusers, setAllusers] = useState([])
+    const [currentUser, setCurrentUser] = useState('')
+
 
     useEffect(() => {
         axios.get('http://localhost:5000/users')
@@ -14,33 +20,42 @@ export default function LeadersBoard() {
             setAllusers(list)
         })
 
-        console.log(allusers)
+        setCurrentUser(userData.username)
+
+        console.log(currentUser)
 
     }, [])
 
 
     return (
-        <div>
-            <h1>Leaders Board</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Gold</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {allusers.map(user => (
-                        <tr key={user._id}>
-                            <td>
-                                <Link to={'/user/'+ user._id}>{user.username}</Link>
-                            </td>
-                            <td>{user.gold}</td>
+        <main className="leadersBoard">
+            <div className="leadersBoard-container">
+                <div>
+                    <h1>Leaders Board</h1>
+                    <BackButton></BackButton>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NAME</th>
+                            <th>GOLD</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-            <BackButton></BackButton>
-        </div>
+                    </thead>
+                    <tbody>
+                        {allusers.map(user => (
+                            <tr key={user._id} className={currentUser === user.username ? "userScore" : ''}>
+                                <td >
+                                    <Link to={'/user/'+ user._id}>{user.username}</Link>
+                                </td>
+                                <td>{user.gold}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                
+            </div>
+            
+        </main>
     )
 }

@@ -23,5 +23,6 @@ router.put('/addPotion/:id', UserInventoryController.addPotion)
 router.put('/sellWeapon/:id', UserInventoryController.sellWeapon)
 router.put('/sellArmor/:id', UserInventoryController.sellArmor)
 router.put('/sellPotion/:id', UserInventoryController.sellPotion)
+router.delete('/removeUsers', UserController.removeUsers)
 
 export default router;

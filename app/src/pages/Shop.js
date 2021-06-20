@@ -1,15 +1,13 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Weapons } from '../inventory/Weapons'
 import { Armors } from '../inventory/Armors'
 import { Potions } from '../inventory/Potions'
 import axios from 'axios'
-import { DataContext } from '../App';
 import UserProfile from '../components/UserProfile'
 import BackButton from '../components/BackButton'
 import './styles/Shop.css'
 
 export default function Shop() {
-    // const { userData } = useContext(DataContext)
     const [userGold, setuserGold] = useState(0)
     const [userData, setUserData] = useState([])
     const [haveWeapon, setHaveWeapon] = useState(false)

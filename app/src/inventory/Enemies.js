@@ -1,17 +1,22 @@
+import monster from '../images/monster.png'
+import witch from '../images/witch.png'
+import troll from '../images/troll.png'
+
+
 export const Enemies = [
     {
         "name":"Goblin",
-        "image":"https://i.imgur.com/yBh7Fn4.png",
+        "image":monster,
         "damage":12,
     },
     {
         "name":"Troll",
-        "image":"https://i.pinimg.com/originals/8d/7f/d8/8d7fd8ae9fcd6060497c628e1c7944b4.jpg",
+        "image":troll,
         "damage":8,
     },
     {
         "name":"Witch",
-        "image":"https://i.pinimg.com/originals/c0/da/c0/c0dac0da46b4c59534cf898b1967d523.png",
+        "image":witch,
         "damage":15,
     }
 ]

@@ -1,12 +1,11 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, Redirect } from 'react-router-dom';
-import { DataContext } from '../App';
 import UserProfile from '../components/UserProfile';
 import axios from 'axios';
 import './styles/GameWindow.css'
 
 export default function GameWindow() {
-     // const { userData } = useContext(DataContext)
+     
 
      const [userGold, setuserGold] = useState(0)
      const [userHealth, setUserHealth] = useState(0)

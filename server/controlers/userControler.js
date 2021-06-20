@@ -12,20 +12,6 @@ const signUp = async (req, res) => {
     } catch (e) {
       res.status(400).send(e)
       console.log(e)
-      // res.status(400).json(e)
-      // if(!req.body.username) {
-      //   res.send({
-      //     success: false,
-      //     message: "Missing username"
-      //   })
-      // }
-      // if(!req.body.password.length < 4) {
-      //   res.send({
-      //     success: false,
-      //     message: "Pass"
-      //   })
-      // }
-      
     }
 
     
@@ -102,11 +88,19 @@ const getAllUsers = async (req,res) => {
     }
 }
 
+const removeUsers = async (req, res) => {
+  User.remove({}, (users,err) => {
+    if(err) return res.json(err)
+    res.json(items)
+  })
+}
+
 export default {
     signUp,
     login,
     getUserData,
     updateUserData,
     updateUserHealth,
-    getAllUsers
+    getAllUsers,
+    removeUsers
 }

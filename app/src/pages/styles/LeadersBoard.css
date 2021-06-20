@@ -1,0 +1,74 @@
+.leadersBoard {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leadersBoard-container {
+  margin: 0 auto;
+  padding: 20px 0;
+  width: 800px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leadersBoard-container div {
+  padding: 100px 0 30px 0;
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 2px solid #3d1c7977;
+}
+
+.leadersBoard-container table {
+  padding: 100px 0px 30px 100px;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+thead,
+tbody {
+  margin: 0 auto;
+  width: 70%;
+}
+
+thead tr {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+thead tr th {
+  font-size: 1.1em;
+}
+
+tbody tr {
+  display: flex;
+  justify-content: space-between;
+}
+
+tbody tr td {
+  margin: 5px 0;
+}
+
+tbody tr td a {
+  margin: 5px 0;
+  color: #fff;
+}
+
+.userScore a {
+  font-size: 1.1em;
+  color: gold;
+}
+
+.userScore {
+  font-size: 1.1em;
+  color: gold;
+}
