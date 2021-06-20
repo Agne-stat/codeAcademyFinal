@@ -8,6 +8,7 @@ import BackButton from '../components/BackButton'
 import './styles/Shop.css'
 
 export default function Shop() {
+
     const [userGold, setuserGold] = useState(0)
     const [userData, setUserData] = useState([])
     const [haveWeapon, setHaveWeapon] = useState(false)

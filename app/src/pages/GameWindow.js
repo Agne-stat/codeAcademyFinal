@@ -8,12 +8,12 @@ export default function GameWindow() {
      const [userGold, setuserGold] = useState(0)
      const [userHealth, setUserHealth] = useState(0)
      const [redirect, setRedirect] = useState(null);
-     const [userData, setUserData] = useState([])
+     const [userData, setUserData] = useState([]);
+
 
      const id = localStorage.getItem('gameUser-id')
 
      useEffect(() => {
-
           axios.get('http://localhost:5000/user/'+ id)
                .then((res) => {
                     setUserData(res.data)
@@ -27,7 +27,7 @@ export default function GameWindow() {
                setUserHealth(0)
           }
 
-     }, [])
+     }, [id])
 
      const logout = () => {
           localStorage.removeItem('gameUser-id');
@@ -38,19 +38,19 @@ export default function GameWindow() {
 
     return (
           <main className="home">
-               <div className="home-container">
-                    <UserProfile user={userData} gold={userGold} health={userHealth}></UserProfile>
-                    
-                    <div className="game-navigation">
-                         <div className="game-container">
-                              <Link to='/arena' className="game-item">ARENA</Link>
-                              <Link to='/leadersboard' className="game-item">LEADERS BOARD</Link>
-                              <Link to='/shop' className="game-item">SHOP</Link>
-                              <Link to='/inventory' className="game-item">INVENTORY</Link>
+                    <div className="home-container">
+                         <UserProfile user={userData} gold={userGold} health={userHealth}></UserProfile>
+                         
+                         <div className="game-navigation">
+                              <div className="game-container">
+                                   <Link to='/arena' className="game-item">ARENA</Link>
+                                   <Link to='/leadersboard' className="game-item">LEADERS BOARD</Link>
+                                   <Link to='/shop' className="game-item">SHOP</Link>
+                                   <Link to='/inventory' className="game-item">INVENTORY</Link>
+                              </div>
+                              <button className="logout" onClick={logout}>LOGOUT</button>
                          </div>
-                         <button className="logout" onClick={logout}>LOGOUT</button>
                     </div>
-               </div>
           </main>
     )
 }

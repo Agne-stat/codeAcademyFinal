@@ -78,6 +78,18 @@ const updateUserHealth = (req, res) => {
   })
 }
 
+const updateUsername = (req, res) => {
+  const id = req.params.id;
+  let nameItem = req.body.username;
+
+  User.findByIdAndUpdate(id, {
+    username:nameItem
+  })
+  .then((response) => {
+    res.send()
+  })
+}
+
 
 
 const getAllUsers = async (req,res) => {
@@ -102,6 +114,7 @@ export default {
     getUserData,
     updateUserData,
     updateUserHealth,
+    updateUsername,
     getAllUsers,
     removeUsers
 }

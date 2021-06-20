@@ -10,12 +10,12 @@ router.get('/', (req, res) => {
     res.json('Hello')
 })
 
-
 router.post('/signup', UserController.signUp);
 router.post('/login', UserController.login);
 router.get('/user/:id', UserController.getUserData);
 router.put('/updateUserData/:id', UserController.updateUserData);
 router.put('/updateUserHealth/:id', UserController.updateUserHealth);
+router.put('/updateUsername/:id', UserController.updateUsername);
 router.get('/users', UserController.getAllUsers);
 router.put('/addWeapon/:id', UserInventoryController.addWeapon)
 router.put('/addArmor/:id', UserInventoryController.addArmor)

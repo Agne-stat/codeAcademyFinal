@@ -6,7 +6,7 @@ import axios from 'axios';
 import './styles/Inventory.css'
 
 export default function UserInventory() {
-    const { userData, setuserData } = useContext(DataContext)
+    const { userData, setuserData} = useContext(DataContext)
 
     const [userGold, setuserGold] = useState(0)
     const [userWeapon, setuserWeapon] = useState([])
@@ -22,11 +22,14 @@ export default function UserInventory() {
     const [armorPrice, setArmorPrice] = useState(0)
     const [potionPrice, setPotionPrice] = useState(0)
     const [weaponSpecial, setWeaponSpecial] = useState('')
+    
 
 
     const id = localStorage.getItem('gameUser-id');
 
     useEffect(() => {
+        
+
         const id = localStorage.getItem('gameUser-id')
 
         axios.get('http://localhost:5000/user/'+ id)

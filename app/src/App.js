@@ -16,16 +16,18 @@ export const DataContext = React.createContext();
 
 function App() {
   const [userData, setuserData] = useState([])
+  const [updateProfile, setUpdateProfile] = useState(false)
+  const [username, setUsername] = useState('')
 
+  const id = localStorage.getItem('gameUser-id')
   useEffect(() => {
-    const id = localStorage.getItem('gameUser-id')
-
+    
     axios.get('http://localhost:5000/user/'+ id)
     .then((res) => {
       setuserData(res.data)
+      setUsername(res.data.username)
 
     })
-
     console.log(id)
 
   }, [])
@@ -33,7 +35,7 @@ function App() {
   
   return (
     <div className="App">
-      <DataContext.Provider value={{userData, setuserData }}>
+      <DataContext.Provider value={{userData, setuserData, updateProfile, setUpdateProfile, id, username, setUsername}}>
         <Router>
           <Switch>
             <Route exact path='/'>
