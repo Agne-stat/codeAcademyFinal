@@ -20,14 +20,18 @@ export default function GameWindow() {
                     setUserData(res.data)
                     setuserGold(res.data.gold)
                     setUserHealth(res.data.health)
-                    console.log(res.data)
           })
+
+          return function cleanup() {
+               setUserData([])
+               setuserGold(0)
+               setUserHealth(0)
+          }
 
      }, [])
 
      const logout = () => {
           localStorage.removeItem('gameUser-id');
-          console.log('loged out')
           setRedirect('/');
      }
      if(redirect) return <Redirect exact to={redirect}></Redirect>

@@ -43,7 +43,13 @@ export default function Shop() {
                 }
         })
 
-    }, [userData])
+        return function cleanup() {
+            setHaveWeapon(false)
+            setHaveArmor(false)
+            setHavePotion(false)
+        }
+
+    }, [userData, id])
 
 
     const addWeapon = (index) => {
@@ -51,7 +57,7 @@ export default function Shop() {
 
             axios.put('http://localhost:5000/addWeapon/'+id, {weapon})
             .then((res) => {
-                console.log(res)
+               
             })
 
             let gold = userData.gold - weapon.price
@@ -60,7 +66,7 @@ export default function Shop() {
 
             axios.put('http://localhost:5000/updateUserData/'+id, {gold})
             .then((res) => {
-                console.log(res)
+                
             })
 
             setuserGold(gold)
@@ -72,14 +78,14 @@ export default function Shop() {
         if(userData.gold >= armor.price) {
             axios.put('http://localhost:5000/addArmor/'+id, {armor})
             .then((res) => {
-                console.log(res)
+                
             })
 
             let gold = userData.gold - armor.price
 
             axios.put('http://localhost:5000/updateUserData/'+id, {gold})
             .then((res) => {
-                console.log(res)
+                
             })
 
             setuserGold(gold)
@@ -95,14 +101,14 @@ export default function Shop() {
         if(userData.gold >= potion.price) {
             axios.put('http://localhost:5000/addPotion/'+id, {potion})
             .then((res) => {
-                console.log(res)
+                
             })
 
             let gold = userData.gold - potion.price
 
             axios.put('http://localhost:5000/updateUserData/'+id, {gold})
             .then((res) => {
-                console.log(res)
+            
             })
 
             setuserGold(gold)
@@ -132,7 +138,7 @@ export default function Shop() {
                             
                             <div className={haveWeapon ? "inInventory" : "weapons"}>
                                 {weapons.map(weapon => (
-                                    <div className={userGold<weapon.price ? "disabled" : ""}>
+                                    <div className={userGold<weapon.price ? "disabled" : ""} key={weapon.id}>
                                         <img src={weapon.image} alt="weapon"></img>
                                         <button onClick={()=>addWeapon(weapon.id)} className="tooltip">{weapon.price}
                                         <span className="tooltiptext">Damage: {weapon.damage}, Special: {weapon.special}</span>
@@ -149,7 +155,7 @@ export default function Shop() {
                             
                             <div className={haveArmor ? "inInventory" : "armors"}>
                                 {armors.map(armor => (
-                                    <div className={userGold<armor.price ? "disabled" : ""}>
+                                    <div className={userGold<armor.price ? "disabled" : ""} key={armor.id}>
                                         <img src={armor.image} alt="armor"></img>
                                         <button  onClick={()=>addArmor(armor.id)} className="tooltip">{armor.price}
                                         <span className="tooltiptext">Defence: {armor.defence}</span>
@@ -167,7 +173,7 @@ export default function Shop() {
                             </div>
                             <div className={havePotion ? "inInventory" : "potions"}>
                                 {potions.map(potion => (
-                                    <div className={userGold<potion.price ? "disabled" : ""}>
+                                    <div className={userGold<potion.price ? "disabled" : ""} key={potion.id}>
                                         <img src={potion.image} alt="potion"></img>
                                         
                                         <button  onClick={()=>addPotion(potion.id)}className="tooltip">{potion.price} <span className="tooltiptext">Heals: {potion.heals}</span>

@@ -34,16 +34,15 @@ export default function Arena() {
 
         const id = localStorage.getItem('gameUser-id')
 
-          axios.get('http://localhost:5000/user/'+ id)
-               .then((res) => {
+        axios.get('http://localhost:5000/user/'+ id)
+            .then((res) => {
                 setuserData(res.data)
                 setUserGold(res.data.gold)
                 setUserHealth(res.data.health)
-          })
-
-        
+        })
         setChangeMonster(false)
 
+        // cheking for inventory
         if(userData.inventoryWeapons.length === 0) {
             setUserDamage(3)
             setUseWeapon(false)
@@ -64,30 +63,33 @@ export default function Arena() {
             setUserHealing(userData.inventoryPotions[0].heals)
         }
 
+        // changing monster
         if(changeMonster === true) {
             let monsterIndex = Math.floor(Math.random() * enemies.length)
-            console.log(enemies,monsterIndex)
             setMonster(enemies[monsterIndex])
             setMonsterHealth(100)
             setMonsterDamage(enemies[monsterIndex].damage)
             setChangeMonster(false)
         }
 
+        // health bars
         progressUser.current.style.width = `${userHealth}%`;
         progressMonster.current.style.width = `${monsterHealth}%`;
 
-    }, [userData, changeMonster])
+
+    }, [userData, changeMonster, enemies, monsterHealth, userHealth, setuserData])
 
     const startFight = () => {
-        console.log(monster)
+
+        // bonus gold for killing monster
+        let bonusGold = 0
 
         if(monsterHealth < 1) {
-            console.log('new monster')
             setChangeMonster(true)
+            bonusGold = 50
         }
 
-        console.log(useWeapon, useArmor )
-        // pridedu
+        // weapon and armor 
         let userDamageLevel;
         let armor
         if (useWeapon === true) {
@@ -103,9 +105,6 @@ export default function Arena() {
         }
         
 
-        console.log(armor)
-        console.log(userDamageLevel)
-
         let monsterDamageLevel = Math.floor(Math.random() * monsterDamage+1)
 
         // weapon's special effects
@@ -114,61 +113,48 @@ export default function Arena() {
         } else {
             if(userData.inventoryWeapons[0].name === 'sword' && useWeapon === true) {
                 let possibility = Math.floor(Math.random() * 5)
-                console.log(possibility)
                 if(possibility === 4) {
                     monsterDamageLevel = 0
                     armor = 0
-                    if(userData.inventoryWeapons[0].special === 'has 20% chance to block enemy attack') {
-                        setSpecialsMessage('Enemy attack was bloked!')
-                    } else if (userData.inventoryWeapons[0].special === 'has 30% chance to do double damage') {
-                        setSpecialsMessage('Your damage was doubled!')
-                    } else if (userData.inventoryWeapons[0].special === 'has 40% chance to heal hero on enemy attack by 10hit points') {
-                        setSpecialsMessage('You have been heald by 10 hit points!')
-                    } else {
-                        setSpecialsMessage('')
-                    }
-                    
+                    setSpecialsMessage('Enemy attack was bloked!')
                 } else {
                     setSpecialsMessage('')
                     monsterDamageLevel = Math.floor(Math.random() * monsterDamage+1)
                 }
-                console.log(monsterDamageLevel)
             } else if (userData.inventoryWeapons[0].name === 'bow' && useWeapon === true) {
                 let possibility = Math.floor(Math.random() * 3)
-                console.log(possibility)
                 if(possibility === 2) {
                     userDamageLevel=(Math.floor(Math.random() * userDamage+1))*2
+                    setSpecialsMessage('Your damage was doubled!')
+                } else {
+                    setSpecialsMessage('')
                 }
             } else if (userData.inventoryWeapons[0].name === 'magic wand' && useWeapon === true) {
                 let possibility = Math.floor(Math.random() * 10)
-                console.log(possibility)
                 if(possibility > 4) {
                     let bonusHealth = userHealth + 10
                     setUserHealth(bonusHealth)
-                    console.log(userHealth)
+                    setSpecialsMessage('You have been heald by 10 hit points!')
+                } else {
+                    setSpecialsMessage('')
                 }
             }
         }
 
-        
-        
-      
+        // updating user health and gold
         let health = userHealth - monsterDamageLevel + armor
-        console.log(health)
 
         if(health > 0) {
             axios.put('http://localhost:5000/updateUserHealth/'+id, {health})
             .then((res) => {
-                console.log(res)
             })
         
             setUserHealth(health)
 
-            let gold = userGold + Math.floor(Math.random() * 11)
+            let gold = userGold + Math.floor(Math.random() * 11) + bonusGold;
 
             axios.put('http://localhost:5000/updateUserData/'+id, {gold})
             .then((res) => {
-                console.log(res)
             })
 
             setUserGold(gold)
@@ -177,7 +163,6 @@ export default function Arena() {
             health = 50;
             axios.put('http://localhost:5000/updateUserHealth/'+id, {health})
             .then((res) => {
-                console.log(res)
             })
         
             setUserHealth(health)
@@ -186,7 +171,6 @@ export default function Arena() {
 
             axios.put('http://localhost:5000/updateUserData/'+id, {gold})
             .then((res) => {
-                console.log(res)
             })
 
             setUserGold(gold)
@@ -196,8 +180,6 @@ export default function Arena() {
 
         setMonsterHealth(healthMonster)
 
-        console.log(userDamageLevel,monsterDamageLevel)
-
     }
 
     const takePotion = () => {
@@ -205,10 +187,7 @@ export default function Arena() {
         let health = userHealth + userHealing
         axios.put('http://localhost:5000/updateUserHealth/'+id, {health})
             .then((res) => {
-                console.log(res)
             })
-        
-        console.log(health)
         
         setUserHealth(health)
 
@@ -217,7 +196,6 @@ export default function Arena() {
 
         axios.put('http://localhost:5000/sellPotion/'+id, {gold, potion})
             .then((res) => {
-                console.log(res)
         })
         
         setUserHealing(0)

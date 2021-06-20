@@ -22,9 +22,7 @@ export default function LeadersBoard() {
 
         setCurrentUser(userData.username)
 
-        console.log(currentUser)
-
-    }, [])
+    }, [userData])
 
 
     return (

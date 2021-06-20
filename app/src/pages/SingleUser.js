@@ -17,51 +17,15 @@ export default function SingleUser() {
         axios.get('http://localhost:5000/user/'+ id)
         .then((res) => {
             setSingleUser(res.data)
-            console.log(res.data)
         })
-
-        console.log(singleUser)
-
-        // if(singleUser.inventoryWeapons.length === 0) {
-        //     setUserWeapon([])
-        //     setDisplayWeapon(false)
-        // } else {
-        //     setUserWeapon(singleUser.inventoryWeapons[0].damage)
-        //     setDisplayWeapon(false)
-        // }
-        
-        // if(singleUser.inventoryArmors.length === 0) {
-        //     setUserArmor([])
-        //     setDisplayArmor(false)
-        // } else {
-        //     setUserArmor(singleUser.inventoryArmors[0].defence)
-        //     setDisplayArmor(true)
-        // }
-
-        // if(singleUser.inventoryPotions.length === 0) {
-        //     setUserPotion([])
-        //     setDisplayPotion(false)
-        // } else {
-        //     setUserPotion(singleUser.inventoryPotions[0].heals)
-        //     setDisplayPotion(true)
-        // }
-
-        // if(userWeapon === [] && userArmor === [] && userPotion === []) {
-        //     setNoInventory(true)
-        //     console.log(userWeapon)
-        // } else {
-        //     setNoInventory(false)
-        // }
-
 
     }, [id])
 
     const showInventory = () => {
-        console.log(singleUser)
 
         if(singleUser.inventoryWeapons.length !== 0) {
             setUserWeapon(true)
-            console.log(userWeapon)
+            
         } else {
             setUserWeapon(false)
         }
@@ -80,7 +44,6 @@ export default function SingleUser() {
 
         if(userWeapon === false && userArmor ===false && userPotion ===false) {
             setNoInventory(true)
-            console.log(userWeapon)
         } else {
             setNoInventory(false)
         }

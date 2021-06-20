@@ -68,12 +68,8 @@ export default function UserInventory() {
             setPotionPrice(userData.inventoryPotions[0].sellPrice)
         }
         
-        // return () => {
-        //     setuserData({}); 
-        // }; 
         
     }, [userData, setuserData, setuserGold, setuserArmor, setuserPotion, setuserWeapon, setDisplayArmor, setDisplayPotion ])
-    // displayPotion, displayArmor, displayWeapon
 
     const sellWeapon = () => {
         let gold = userData.gold + userData.inventoryWeapons[0].sellPrice
@@ -81,7 +77,7 @@ export default function UserInventory() {
 
         axios.put('http://localhost:5000/sellWeapon/'+id, {weapon, gold})
             .then((res) => {
-                console.log(res)
+
         })
         
         setuserGold(gold)
@@ -95,7 +91,7 @@ export default function UserInventory() {
 
         axios.put('http://localhost:5000/sellArmor/'+id, {gold, armor})
             .then((res) => {
-                console.log(res)
+                
         })
         
         setuserGold(gold)
@@ -109,13 +105,12 @@ export default function UserInventory() {
 
         axios.put('http://localhost:5000/sellPotion/'+id, {gold, potion})
             .then((res) => {
-                console.log(res)
+                
         })
         
         setuserGold(gold)
         setuserPotion(potion)
         setDisplayPotion(false)
-        console.log(displayPotion)
     }
 
     return (
