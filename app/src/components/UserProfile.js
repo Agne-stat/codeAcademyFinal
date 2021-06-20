@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function UserProfile({user, gold, health}) {
+
     return (
         <div className="user-profile">
             <h2>{user.username}</h2>
@@ -11,6 +12,9 @@ export default function UserProfile({user, gold, health}) {
                 <div>GOLD: <span>{user.gold}</span></div>
                 <div>HEALTH: <span>{health}</span></div>
             </div>
+
+            
+
         </div>
     )
 }

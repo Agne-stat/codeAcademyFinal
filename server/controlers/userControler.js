@@ -79,6 +79,7 @@ const updateUserHealth = (req, res) => {
 }
 
 
+
 const getAllUsers = async (req,res) => {
     try {
         let users = await User.find({})
