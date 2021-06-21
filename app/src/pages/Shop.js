@@ -56,20 +56,23 @@ export default function Shop() {
     const addWeapon = (index) => {
         let weapon = weapons[index]
 
-            axios.put('http://localhost:5000/addWeapon/'+id, {weapon})
-            .then((res) => {
-               
-            })
-
-            let gold = userData.gold - weapon.price
-            
-
-            axios.put('http://localhost:5000/updateUserData/'+id, {gold})
-            .then((res) => {
+            if(userData.gold >= weapon.price) {
+                axios.put('http://localhost:5000/addWeapon/'+id, {weapon})
+                .then((res) => {
+                   
+                })
+    
+                let gold = userData.gold - weapon.price
                 
-            })
+    
+                axios.put('http://localhost:5000/updateUserData/'+id, {gold})
+                .then((res) => {
+                    
+                })
+    
+                setuserGold(gold)
+            }
 
-            setuserGold(gold)
     }
 
     const addArmor = (index) => {
