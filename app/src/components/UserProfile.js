@@ -24,11 +24,12 @@ export default function UserProfile({user, gold, health}) {
         } else {
             axios.put('http://localhost:5000/updateUsername/'+id, {username})
             .then((res) => {
+                setUsername(username)
+                setUpdateProfile(false)
             })
         }
 
-        setUsername(username)
-        setUpdateProfile(false)
+        
         
     }
 
