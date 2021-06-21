@@ -28,6 +28,7 @@ function App() {
       setUsername(res.data.username)
 
     })
+    setuserData(userData)
     console.log(id)
 
   }, [])

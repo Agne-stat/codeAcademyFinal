@@ -10,7 +10,8 @@ export default function UserProfile({user, gold, health}) {
 
     useEffect(() => {
         setuserData(userData)
-    }, [userData])
+        setUsername(userData.username)
+    }, [userData, setuserData,setUsername ])
 
     const changeUsername =(e) => {
         e.preventDefault();

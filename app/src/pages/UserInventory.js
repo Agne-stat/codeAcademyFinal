@@ -28,9 +28,6 @@ export default function UserInventory() {
     const id = localStorage.getItem('gameUser-id');
 
     useEffect(() => {
-        
-
-        const id = localStorage.getItem('gameUser-id')
 
         axios.get('http://localhost:5000/user/'+ id)
             .then((res) => {

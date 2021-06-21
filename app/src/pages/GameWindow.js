@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link, Redirect } from 'react-router-dom';
 import UserProfile from '../components/UserProfile';
 import axios from 'axios';
 import './styles/GameWindow.css'
+import { DataContext } from '../App';
 
 export default function GameWindow() {
+     const { userData, setuserData} = useContext(DataContext)
+
      const [userGold, setuserGold] = useState(0)
      const [userHealth, setUserHealth] = useState(0)
      const [redirect, setRedirect] = useState(null);
-     const [userData, setUserData] = useState([]);
+     // const [userData, setUserData] = useState([]);
 
 
      const id = localStorage.getItem('gameUser-id')
@@ -16,18 +19,19 @@ export default function GameWindow() {
      useEffect(() => {
           axios.get('http://localhost:5000/user/'+ id)
                .then((res) => {
-                    setUserData(res.data)
+                    setuserData(res.data)
                     setuserGold(res.data.gold)
                     setUserHealth(res.data.health)
+                    console.log(res.data)
           })
+     
+          // return function cleanup() {
+          //      setuserData([])
+          //      setuserGold(0)
+          //      setUserHealth(0)
+          // }
 
-          return function cleanup() {
-               setUserData([])
-               setuserGold(0)
-               setUserHealth(0)
-          }
-
-     }, [id])
+     }, [id, setuserData])
 
      const logout = () => {
           localStorage.removeItem('gameUser-id');
