@@ -14,6 +14,8 @@ export default function Arena() {
     const [userDamage, setUserDamage] = useState(3)
     const [userDefence, setUserDefence] = useState(1)
     const [userHealing, setUserHealing] = useState(0)
+    const [shakeUser, setShakeUser] = useState(false)
+    const [shakeMonster, setShakeMonster] = useState(false)
 
     const [useWeapon, setUseWeapon] = useState(false)
     const [useArmor, setUseArmor] = useState(false)
@@ -27,11 +29,12 @@ export default function Arena() {
     let enemies = Enemies;
     let progressUser = useRef();
     let progressMonster = useRef();
+    let imageUser = useRef();
 
     const id = localStorage.getItem('gameUser-id');
 
     useEffect(() => {
-
+        
         const id = localStorage.getItem('gameUser-id')
 
         axios.get('http://localhost:5000/user/'+ id)
@@ -77,10 +80,19 @@ export default function Arena() {
         progressMonster.current.style.width = `${monsterHealth}%`;
 
 
+        // imageUser.current.style.opacity = userHealth/100
+
     }, [userData, changeMonster, enemies, monsterHealth, userHealth, setuserData])
 
     const startFight = () => {
+        
+        // fighting animations
+        setShakeUser(true)
+        setTimeout(() => setShakeUser(false), 1000);
 
+        setTimeout(() => setShakeMonster(true), 500);
+        setTimeout(() => setShakeMonster(false), 1500);
+       
         // bonus gold for killing monster
         let bonusGold = 0
 
@@ -179,7 +191,6 @@ export default function Arena() {
         let healthMonster = monsterHealth - userDamageLevel;
 
         setMonsterHealth(healthMonster)
-
     }
 
     const takePotion = () => {
@@ -208,7 +219,7 @@ export default function Arena() {
                 <div className="arena-wrapper">
                     <div className="arena-player">
                         <div className="player">
-                            <img src={userData.image} alt="user"></img>
+                            <img src={userData.image} alt="user" ref={imageUser} className={shakeUser === true ? "fighting" : ''}></img>
                         </div>
                         <div className="player-info">
                             <div className="progress">
@@ -230,7 +241,7 @@ export default function Arena() {
 
                     <div className="arena-monster">
                         <div className="monster">
-                            <img src={monster.image} alt="monster"></img>
+                            <img src={monster.image} alt="monster" className={shakeMonster === true ? "fighting" : ''}></img>
                         </div>
                         <div className="monster-info">
                             <div className="progress">
