@@ -67,9 +67,13 @@ export default function UserInventory() {
             setPotionImg(userData.inventoryPotions[0].image)
             setPotionPrice(userData.inventoryPotions[0].sellPrice)
         }
+
+    //     return function cleanup() {
+    //         setuserGold(0)
+    //    }
         
         
-    }, [userData, setuserData, setuserGold, setuserArmor, setuserPotion, setuserWeapon, setDisplayArmor, setDisplayPotion ])
+    }, [userData, setuserData, setuserGold, setuserArmor, setuserPotion, setuserWeapon, setDisplayArmor, setDisplayPotion, id ])
 
     const sellWeapon = () => {
         let gold = userData.gold + userData.inventoryWeapons[0].sellPrice

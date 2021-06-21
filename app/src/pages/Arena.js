@@ -80,7 +80,7 @@ export default function Arena() {
         progressMonster.current.style.width = `${monsterHealth}%`;
 
 
-        // imageUser.current.style.opacity = userHealth/100
+        imageUser.current.style.opacity = userHealth/100
 
     }, [userData, changeMonster, enemies, monsterHealth, userHealth, setuserData])
 

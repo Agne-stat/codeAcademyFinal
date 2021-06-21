@@ -11,7 +11,6 @@ export default function GameWindow() {
      const [userGold, setuserGold] = useState(0)
      const [userHealth, setUserHealth] = useState(0)
      const [redirect, setRedirect] = useState(null);
-     // const [userData, setUserData] = useState([]);
 
 
      const id = localStorage.getItem('gameUser-id')
@@ -22,14 +21,12 @@ export default function GameWindow() {
                     setuserData(res.data)
                     setuserGold(res.data.gold)
                     setUserHealth(res.data.health)
-                    console.log(res.data)
           })
      
-          // return function cleanup() {
-          //      setuserData([])
-          //      setuserGold(0)
-          //      setUserHealth(0)
-          // }
+          return function cleanup() {
+               setuserGold(0)
+               setUserHealth(0)
+          }
 
      }, [id, setuserData])
 

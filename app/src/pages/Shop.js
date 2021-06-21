@@ -63,7 +63,6 @@ export default function Shop() {
 
             let gold = userData.gold - weapon.price
             
-            console.log(gold)
 
             axios.put('http://localhost:5000/updateUserData/'+id, {gold})
             .then((res) => {
